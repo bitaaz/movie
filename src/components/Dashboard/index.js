@@ -38,8 +38,8 @@ export default function Dashboard() {
 
   return (
     <ThemeProvider theme={theme}>
-      {currentUser ? (
-        <>
+      {/*{currentUser ? (*/}
+      {/*  <>*/}
           <Navbar />
           <Container maxWidth="sm" className={classes.container}>
             {" "}
@@ -82,35 +82,35 @@ export default function Dashboard() {
               </Typography>
             </div>{" "}
           </Container>
-        </>
-      ) : (
-        // <div
-        //   style={{
-        //     display: "flex",
-        //     alignItems: "center",
-        //     flexDirection: "column",
-        //     margin: theme.spacing(6, 3, 6),
-        //   }}
-        // >
-        //   <Typography variant="h5">
-        //     You should login to access to this page!
-        //   </Typography>
-        //   <Link
-        //     to="/login"
-        //     style={{
-        //       textDecoration: "none",
-        //       "&:hover": {
-        //         color: theme.palette.success.main,
-        //       },
-        //     }}
-        //   >
-        //     <Typography variant="h6" className={classes.login_typography}>
-        //       Redirect to Log In Page
-        //     </Typography>
-        //   </Link>
-        // </div>
-        <FirebaseLogin />
-      )}
+      {/*  </>*/}
+      {/*) : (*/}
+      {/*  // <div*/}
+      {/*  //   style={{*/}
+      {/*  //     display: "flex",*/}
+      {/*  //     alignItems: "center",*/}
+      {/*  //     flexDirection: "column",*/}
+      {/*  //     margin: theme.spacing(6, 3, 6),*/}
+      {/*  //   }}*/}
+      {/*  // >*/}
+      {/*  //   <Typography variant="h5">*/}
+      {/*  //     You should login to access to this page!*/}
+      {/*  //   </Typography>*/}
+      {/*  //   <Link*/}
+      {/*  //     to="/login"*/}
+      {/*  //     style={{*/}
+      {/*  //       textDecoration: "none",*/}
+      {/*  //       "&:hover": {*/}
+      {/*  //         color: theme.palette.success.main,*/}
+      {/*  //       },*/}
+      {/*  //     }}*/}
+      {/*  //   >*/}
+      {/*  //     <Typography variant="h6" className={classes.login_typography}>*/}
+      {/*  //       Redirect to Log In Page*/}
+      {/*  //     </Typography>*/}
+      {/*  //   </Link>*/}
+      {/*  // </div>*/}
+      {/*  <FirebaseLogin />*/}
+      {/*)}*/}
     </ThemeProvider>
   );
 }
