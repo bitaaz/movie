@@ -1,14 +1,15 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button, Container, Grid } from "@material-ui/core";
+import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../../config";
 
 import PropTypes from "prop-types";
 //style
 import { useStyles, contentStyle } from "./HeroImage.styles";
-import styles from "./HeroImage.css";
-// import { Wrapper, Content, Text } from "./HeroImage.styles";
+import "./HeroImage.css";
+import NoImage from '../../images/no_image.jpg'
 
-import NoImage from "../../images/no_image.jpg";
+// import { Wrapper, Content, Text } from "./HeroImage.styles";
 
 function HeroImage(props) {
   // const HeroImage = ({ image, title, text }) => (
@@ -24,38 +25,15 @@ function HeroImage(props) {
 
   const classes = useStyles();
 
-  var items = [
-    {
-      name: props.title[0],
-      description: props.text[0],
-      image: props.image[0],
-    },
-    {
-      name: props.title[1],
-      description: props.text[1],
-      image: props.image[1],
-    },
-    {
-      name: props.title[2],
-      description: props.text[2],
-      image: props.image[2],
-    },
-    {
-      name: props.title[3],
-      description: props.text[3],
-      image: props.image[3],
-    },
-    {
-      name: props.title[4],
-      description: props.text[4],
-      image: props.image[4],
-    },
-    {
-      name: props.title[5],
-      description: props.text[5],
-      image: props.image[5],
-    },
-  ];
+  const items = props.heros.map((hero) => ({
+    name:
+      hero.original_title.length > 25
+        ? hero.original_title.substring(0, 25).concat("...")
+        : hero.original_title,
+    description: hero.overview.substring(0, 250).concat("..."),
+    image: hero.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${hero.backdrop_path}` : NoImage,
+  }));
+
   return (
     <Grid className={classes.crousel_div}>
       <Carousel
