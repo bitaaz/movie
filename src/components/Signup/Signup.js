@@ -74,7 +74,7 @@ export default function Signup() {
       await signup(emailRef.current.value, passwordRef.current.value);
 
       setSpin(true);
-      const timer = setTimeout(500);
+      const timer = setTimeout(() => {navigate("/")}, 500);
     } catch {
       setError("Failed to create an account");
     }
@@ -82,14 +82,13 @@ export default function Signup() {
   };
 
   const classes = useStyles();
-  const timer = setTimeout(500);
-  console.log(timer);
+
 
   return (
     <ThemeProvider theme={theme}>
-      {currentUser ? (
-        navigate("/")
-      ) : (
+      {/*{currentUser ? (*/}
+      {/*  */}
+      {/*) : (*/}
         <Container component="main" maxWidth="xs">
           <div className={classes.logo_div}>
             <Link to="/">
@@ -181,7 +180,7 @@ export default function Signup() {
             </Typography>
           </div>
         </Container>
-      )}
+      {/*)}*/}
     </ThemeProvider>
   );
 

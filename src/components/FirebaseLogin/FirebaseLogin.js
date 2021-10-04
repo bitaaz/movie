@@ -63,6 +63,8 @@ const FirebaseLogin = () => {
       const timer = setTimeout(() => {
         if (window.location.pathname === "/dashboard") {
           navigate("/dashboard");
+        }else{
+          navigate('/')
         }
       }, 500);
     } catch {
@@ -77,9 +79,9 @@ const FirebaseLogin = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {currentUser ? (
-        navigate("/")
-      ) : (
+      {/*{currentUser ? (*/}
+      {/*  navigate("/")*/}
+      {/*) : (*/}
         <Container maxWidth="xs">
           <div className={classes.logo_div}>
             <Link to="/">
@@ -169,7 +171,7 @@ const FirebaseLogin = () => {
             </Typography>
           </div>
         </Container>
-      )}
+      {/*)}*/}
     </ThemeProvider>
   );
 };
