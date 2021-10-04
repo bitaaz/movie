@@ -31,32 +31,7 @@ const Home = () => {
     <>
       <Navbar />
       {!searchedItem && state.results[0] ? (
-        <HeroImage
-          image={[
-            `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`,
-            `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[1].backdrop_path}`,
-            `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[2].backdrop_path}`,
-            `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[3].backdrop_path}`,
-            `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[4].backdrop_path}`,
-            `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[5].backdrop_path}`,
-          ]}
-          title={[
-            state.results[0].original_title,
-            state.results[1].original_title,
-            state.results[2].original_title,
-            state.results[3].original_title,
-            state.results[4].original_title,
-            state.results[5].original_title,
-          ]}
-          text={[
-            state.results[0].overview,
-            state.results[1].overview,
-            state.results[2].overview,
-            state.results[3].overview,
-            state.results[4].overview,
-            state.results[5].overview,
-          ]}
-        />
+        <HeroImage heros={state.results.slice(0, 6)} />
       ) : null}
       <SearchBar setSearchedItem={setSearchedItem} />
       <Grid header="Popular Movies">
