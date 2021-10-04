@@ -16,7 +16,7 @@ import {
   Typography,
   Popover,
   Paper,
-  Divider,
+  Divider, Grid,
 } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import {
@@ -67,7 +67,7 @@ const Navbar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.root}>
+      <Grid className={classes.root}>
         <AppBar position="static">
           <Toolbar className={classes.toolbar}>
             <div className={classes.logo_link}>
@@ -93,6 +93,7 @@ const Navbar = () => {
                       width: 35,
                       height: 35,
                     }}
+
                   />
                 </IconButton>
 
@@ -215,7 +216,7 @@ const Navbar = () => {
                 </Menu> */}
               </div>
             ) : (
-              <div>
+              <Grid item className={classes.auth_grid}>
                 <Link
                   to="/login"
                   style={{ textDecoration: "none" }}
@@ -235,11 +236,11 @@ const Navbar = () => {
                     Sign Up
                   </Button>
                 </Link>
-              </div>
+              </Grid>
             )}
           </Toolbar>
         </AppBar>
-      </div>
+      </Grid>
     </ThemeProvider>
   );
 };
