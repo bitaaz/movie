@@ -15,12 +15,18 @@ export const useStyles = makeStyles({
   },
   toolbar: {
     padding: theme.spacing(2, 8, 2),
+    [theme.breakpoints.down(395)]: {
+      display:'block'
+    },
   },
   logo_link: {
     flexGrow: 1,
   },
   logo: {
     maxWidth: 200,
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: 100,
+    },
   },
   profile_logo_person: {
     marginLeft: "auto",
@@ -31,6 +37,11 @@ export const useStyles = makeStyles({
     marginLeft: "auto",
   },
 
+  auth_grid:{
+    [theme.breakpoints.down(395)]: {
+      marginTop: theme.spacing(2)
+    }
+  },
   login_button: {
     fontSize: "18px",
     background: "#353535",
@@ -40,6 +51,12 @@ export const useStyles = makeStyles({
     "&:hover": {
       color: "#eeeeee",
       background: theme.palette.primary.light,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "12px",
+    },
+    [theme.breakpoints.down(395)]: {
+      fontSize:'8px'
     },
   },
   signup_button: {
@@ -51,6 +68,12 @@ export const useStyles = makeStyles({
     transition: "all 0.3s",
     "&:hover": {
       background: theme.palette.success.main,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "12px",
+    },
+    [theme.breakpoints.down(395)]: {
+      fontSize:'8px'
     },
   },
 
