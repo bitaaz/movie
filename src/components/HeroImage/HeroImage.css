@@ -1,13 +1,13 @@
 @media only screen and (min-width: 720px) {
-  .Carousel-indicators-16 {
+  .Carousel-indicators-18 {
     display: none;
   }
 }
 @media only screen and (max-width: 720px) {
-  .Carousel-buttonWrapper-20.Carousel-next-26 {
+  .Carousel-buttonWrapper-22.Carousel-next-28 {
     display: none;
   }
-  .Carousel-buttonWrapper-20.Carousel-prev-27 {
+  .Carousel-buttonWrapper-22.Carousel-prev-29 {
     display: none;
   }
 }
