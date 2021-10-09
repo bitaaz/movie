@@ -43,7 +43,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
       <Grid xs={12} className={classes.title_grid}>
         <h1>{title}</h1>
       </Grid>
-      <GridList className={classes.gridList} cols={2.5} ref={scrollRef}>
+      <GridList className={classes.gridList} ref={scrollRef}>
         {tileData.map((tile) => (
           <GridListTile
             key={tile.img}
