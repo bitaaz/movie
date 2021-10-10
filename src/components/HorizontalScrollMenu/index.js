@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -14,24 +14,14 @@ import {
 
 import { useStyles } from "./HorizontalScrollMenu.styles";
 
-const icon = (
-    <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>
-        <Box component="svg" sx={{ width: 100, height: 100 }}>
-            <Box
-                component="polygon"
-                sx={{
-                    fill: (theme) => theme.palette.common.white,
-                    stroke: (theme) => theme.palette.divider,
-                    strokeWidth: 1,
-                }}
-                points="0,100 50,00, 100,100"
-            />
-        </Box>
-    </Paper>
-);
 
 export default function SingleLineGridList({ gridItemsInfo, title }) {
   const classes = useStyles();
+  const [leftButtonVisible, setLeftButtonVisible] = useState(false)
+    const [rightButtonVisible, setRightButtonVisible] = useState(true)
+
+
+
 
   const tileData = gridItemsInfo.map((item) => ({
     img: item.poster_path
@@ -41,25 +31,52 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
     title: item.original_title,
   }));
 
-
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
-    if (direction === "left") {
-      scrollRef.current.scrollLeft -=
-            (window.innerWidth - window.innerWidth / 10)/2
+      if (direction === "left") {
+        scrollRef.current.scrollLeft -= (window.innerWidth - window.innerWidth/10) / 3
+        //     (window.innerWidth - window.innerWidth / 10)/3
         setTimeout(() => {scrollRef.current.scrollLeft -=
-            (window.innerWidth - window.innerWidth / 10)/2;}, 50)
+           2 * (window.innerWidth - window.innerWidth / 10)/3;}, 100)
+
 
     }
-    if (direction === "right") {
-        scrollRef.current.scrollLeft +=
-            (window.innerWidth - window.innerWidth / 10)/2
+    else if (direction === "right") {
+      scrollRef.current.scrollLeft += (window.innerWidth - window.innerWidth/10) /3
+        //   (window.innerWidth - window.innerWidth / 10)/3
         setTimeout(() => {scrollRef.current.scrollLeft +=
-            (window.innerWidth - window.innerWidth / 10)/2;}, 50)
+           2 * (window.innerWidth - window.innerWidth / 10)/3;}, 100)
 
     }
+
+     setTimeout(() => { if(scrollRef.current.scrollLeft > 0 ){
+         setLeftButtonVisible(true)
+     }
+     else{
+         setLeftButtonVisible(false)
+
+     }}, 100)
+
+      setTimeout(() => { if(scrollRef.current.scrollLeft >= window.innerWidth
+          * (((210 * gridItemsInfo.length) / window.innerWidth)- 1) && direction === 'right'){
+          setRightButtonVisible(false)
+      }
+      else{
+          setRightButtonVisible(true)
+
+      }}, 100)
+
+
+      console.log('now: ' + scrollRef.current.scrollLeft)
+      console.log('width: ' + window.innerWidth)
+      console.log((210 * gridItemsInfo.length) / window.innerWidth)
+
+
+
+
   };
+
 
   return (
     <Grid className={classes.root}>
@@ -78,28 +95,32 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
               </GridListTile>
           ))}
 
-          <Grid
+
+          {leftButtonVisible && <Grid
               style={{ alignItems: "center", display: "flex", height: "330px" }}
           >
-            <Fab
-                className={classes.fab}
-                style={{
-                  left: "0",
-                }}
-                onClick={() => scroll("left")}
-            >
-              <ArrowBackIosRounded className={classes.arrow_button} />
-            </Fab>
-            <Fab
-                className={classes.fab}
-                style={{
-                  right: "0",
-                }}
-                onClick={() => scroll("right")}
-            >
-              <ArrowForwardIosRounded className={classes.arrow_button} />
-            </Fab>
-          </Grid>
+              <Fab
+                  className={classes.fab}
+                  style={{
+                      left: "0",
+                  }}
+                  onClick={() => scroll("left")}
+              >
+                  <ArrowBackIosRounded className={classes.arrow_button} />
+              </Fab>
+          </Grid>}
+          {rightButtonVisible &&  <Grid  style={{ alignItems: "center", display: "flex", height: "330px" }}>
+              <Fab
+                  className={classes.fab}
+                  style={{
+                      right: "0",
+                  }}
+                  onClick={() => scroll("right")}
+
+              >
+                  <ArrowForwardIosRounded className={classes.arrow_button} />
+              </Fab>
+          </Grid>}
         </GridList>
     </Grid>
 
