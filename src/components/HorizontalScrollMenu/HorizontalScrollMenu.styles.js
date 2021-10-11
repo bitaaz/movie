@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -6,7 +7,7 @@ export const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    marginTop: "10px",
+    marginTop: "20px",
     padding: "10px",
   },
   gridList: {
@@ -17,7 +18,7 @@ export const useStyles = makeStyles((theme) => ({
     overflowX: "hidden",
   },
   title_grid: {
-    marginBottom: "10px",
+    paddingLeft: "10px",
   },
   fab: {
     position: "absolute",
@@ -28,5 +29,11 @@ export const useStyles = makeStyles((theme) => ({
   arrow_button: {
     width: "15px",
     height: "15px",
+  },
+  title_see_all_grid: {
+    transitionProperty: "opacity",
+    transitionDuration: "4s",
+    transitionTimingFunction: "ease",
+    transitionDelay: "0",
   },
 }));
