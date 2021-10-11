@@ -33,23 +33,15 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
 
   const scrollRef = useRef(null);
 
-  const scroll = (direction) => {
-      if (direction === "left") {
-        scrollRef.current.scrollLeft -= (window.innerWidth - window.innerWidth/10)
-
+  const buttonsFadeOnHorizontalLimit = (scrollRef, direction) => {
+      setTimeout(() => { if((scrollRef.current.scrollLeft > 0 && direction==='right')
+          || (scrollRef.current.scrollLeft > window.innerWidth && direction==='left')){
+          setLeftButtonVisible(true)
       }
-    else if (direction === "right") {
-      scrollRef.current.scrollLeft += (window.innerWidth - window.innerWidth/10)
-    }
+      else {
+          setLeftButtonVisible(false)
 
-     setTimeout(() => { if((scrollRef.current.scrollLeft > 0 && direction==='right')
-         || (scrollRef.current.scrollLeft > window.innerWidth && direction==='left')){
-         setLeftButtonVisible(true)
-     }
-     else {
-         setLeftButtonVisible(false)
-
-     }}, 100)
+      }}, 100)
 
       setTimeout(() => { if(scrollRef.current.scrollLeft >= window.innerWidth
           * (((210 * gridItemsInfo.length) / window.innerWidth)- 2) && direction === 'right'){
@@ -60,14 +52,18 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
 
       }}, 100)
 
+  }
 
-      console.log('now: ' + scrollRef.current.scrollLeft)
-      console.log('width: ' + window.innerWidth)
+  const scroll = (direction) => {
+      if (direction === "left") {
+        scrollRef.current.scrollLeft -= (window.innerWidth - window.innerWidth/10)
 
+      }
+    else if (direction === "right") {
+      scrollRef.current.scrollLeft += (window.innerWidth - window.innerWidth/10)
+    }
 
-
-
-
+    buttonsFadeOnHorizontalLimit(scrollRef, direction)
   };
 
 
