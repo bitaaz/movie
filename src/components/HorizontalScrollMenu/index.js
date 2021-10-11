@@ -35,31 +35,24 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
 
   const scroll = (direction) => {
       if (direction === "left") {
-        scrollRef.current.scrollLeft -= (window.innerWidth - window.innerWidth/10) / 3
-        //     (window.innerWidth - window.innerWidth / 10)/3
-        setTimeout(() => {scrollRef.current.scrollLeft -=
-           2 * (window.innerWidth - window.innerWidth / 10)/3;}, 100)
+        scrollRef.current.scrollLeft -= (window.innerWidth - window.innerWidth/10)
 
-
-    }
+      }
     else if (direction === "right") {
-      scrollRef.current.scrollLeft += (window.innerWidth - window.innerWidth/10) /3
-        //   (window.innerWidth - window.innerWidth / 10)/3
-        setTimeout(() => {scrollRef.current.scrollLeft +=
-           2 * (window.innerWidth - window.innerWidth / 10)/3;}, 100)
-
+      scrollRef.current.scrollLeft += (window.innerWidth - window.innerWidth/10)
     }
 
-     setTimeout(() => { if(scrollRef.current.scrollLeft > 0 ){
+     setTimeout(() => { if((scrollRef.current.scrollLeft > 0 && direction==='right')
+         || (scrollRef.current.scrollLeft > window.innerWidth && direction==='left')){
          setLeftButtonVisible(true)
      }
-     else{
+     else {
          setLeftButtonVisible(false)
 
      }}, 100)
 
       setTimeout(() => { if(scrollRef.current.scrollLeft >= window.innerWidth
-          * (((210 * gridItemsInfo.length) / window.innerWidth)- 1) && direction === 'right'){
+          * (((210 * gridItemsInfo.length) / window.innerWidth)- 2) && direction === 'right'){
           setRightButtonVisible(false)
       }
       else{
@@ -70,7 +63,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
 
       console.log('now: ' + scrollRef.current.scrollLeft)
       console.log('width: ' + window.innerWidth)
-      console.log((210 * gridItemsInfo.length) / window.innerWidth)
+
 
 
 
@@ -84,7 +77,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
         <h1>{title}</h1>
       </Grid>
 
-      <GridList className={classes.gridList} ref={scrollRef}>
+      <GridList className={classes.gridList} style={{scrollBehavior: 'smooth'}} ref={scrollRef}>
           {tileData.map((tile) => (
               <GridListTile
                   key={tile.img}
