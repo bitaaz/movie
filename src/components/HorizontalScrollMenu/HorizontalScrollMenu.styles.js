@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     marginTop: "20px",
-    padding: "10px",
+    padding: "15px",
   },
   gridList: {
     flexWrap: "nowrap",
@@ -31,9 +31,15 @@ export const useStyles = makeStyles((theme) => ({
     height: "15px",
   },
   title_see_all_grid: {
-    transitionProperty: "opacity",
-    transitionDuration: "4s",
-    transitionTimingFunction: "ease",
-    transitionDelay: "0",
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    padding: "0",
+    height: "50px",
+    width: "300px",
+    marginBottom: "20px",
+  },
+  see_all: {
+    marginLeft: "15px",
   },
 }));
