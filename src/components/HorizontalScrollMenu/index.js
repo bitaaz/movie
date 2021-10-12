@@ -79,13 +79,11 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
           onMouseLeave={() => setHover(false)}
         >
           <h1>{title}</h1>
-          {hover && (
-            <Fade in={hover} timeout={400}>
-              <body className={classes.see_all}>
-                See All <span style={{ fontWeight: "bold" }}>></span>
-              </body>
-            </Fade>
-          )}
+          <Fade in={hover} timeout={400}>
+            <body className={classes.see_all}>
+              See All <span style={{ fontWeight: "bold" }}>></span>
+            </body>
+          </Fade>
         </Grid>
       </Grid>
 
@@ -106,7 +104,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
           </ImageListItem>
         ))}
 
-        {buttonsVisibleOnHover && leftButtonVisible && (
+        {leftButtonVisible && (
           <Fade in={buttonsVisibleOnHover} timeout={300}>
             <Grid
               style={{
@@ -127,7 +125,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
             </Grid>
           </Fade>
         )}
-        {buttonsVisibleOnHover && rightButtonVisible && (
+        {rightButtonVisible && (
           <Fade in={buttonsVisibleOnHover} timeout={300}>
             <Grid
               style={{
