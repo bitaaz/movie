@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
+import ImageList from "@material-ui/core/ImageList";
+import ImageListItem from "@material-ui/core/ImageListItem";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
@@ -72,7 +72,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
 
   return (
     <Grid className={classes.root}>
-      <Grid xs={12} className={classes.title_grid}>
+      <Grid item xs={12} className={classes.title_grid}>
         <Grid
           className={classes.title_see_all_grid}
           onMouseEnter={() => setHover(true)}
@@ -89,7 +89,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
         </Grid>
       </Grid>
 
-      <GridList
+      <ImageList
         className={classes.gridList}
         style={{ scrollBehavior: "smooth" }}
         ref={scrollRef}
@@ -97,13 +97,13 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
         onMouseLeave={() => setButtonsVisibleOnHover(false)}
       >
         {tileData.map((tile) => (
-          <GridListTile
-            key={tile.img}
+          <ImageListItem
+            key={tile.id}
             style={{ height: "330px", width: "200px", margin: "5px" }}
           >
-            <Thumb key={tile.id} clickable image={tile.img} movieId={tile.id} />
+            <Thumb clickable image={tile.img} movieId={tile.id} />
             <Typography>{tile.title}</Typography>
-          </GridListTile>
+          </ImageListItem>
         ))}
 
         {buttonsVisibleOnHover && leftButtonVisible && (
@@ -148,7 +148,7 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
             </Grid>
           </Fade>
         )}
-      </GridList>
+      </ImageList>
     </Grid>
   );
 }
