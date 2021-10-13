@@ -34,12 +34,8 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
-    padding: "0",
     height: "50px",
     width: "300px",
     marginBottom: "20px",
-  },
-  see_all: {
-    marginLeft: "15px",
   },
 }));
