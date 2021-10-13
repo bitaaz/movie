@@ -11,6 +11,9 @@ const initialState = {
 };
 
 export const useHomeFetch = () => {
+  const [topRatedMovies, setTopRatedMovies] = useState(initialState);
+  const [upcomingMovies, setUpcomingMovies] = useState(initialState);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState(initialState);
   const [state, setState] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -28,6 +31,36 @@ export const useHomeFetch = () => {
         ...movies,
         results:
           page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
+      }));
+
+      const topRatedMoviesApi = await API.fetchTopRatedMovies(page);
+
+      setTopRatedMovies((prev) => ({
+        ...topRatedMoviesApi,
+        results:
+          page > 1
+            ? [...prev.results, ...topRatedMoviesApi.results]
+            : [...topRatedMoviesApi.results],
+      }));
+
+      const upcomingMoviesApi = await API.fetchUpcomingMovies(page);
+
+      setUpcomingMovies((prev) => ({
+        ...upcomingMoviesApi,
+        results:
+          page > 1
+            ? [...prev.results, ...upcomingMoviesApi.results]
+            : [...upcomingMoviesApi.results],
+      }));
+
+      const nowPlayingMoviesApi = await API.fetchNowPlayingMovies(page);
+
+      setNowPlayingMovies((prev) => ({
+        ...nowPlayingMoviesApi,
+        results:
+          page > 1
+            ? [...prev.results, ...nowPlayingMoviesApi.results]
+            : [...nowPlayingMoviesApi.results],
       }));
     } catch (error) {
       setError(true);
@@ -67,6 +100,9 @@ export const useHomeFetch = () => {
   }, [searchedItem, state]);
 
   return {
+    topRatedMovies,
+    upcomingMovies,
+    nowPlayingMovies,
     state,
     isLoading,
     error,
