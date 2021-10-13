@@ -78,9 +78,9 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >
-          <h1>{title}</h1>
+          <h1 style={{ marginRight: "6px" }}>{title}</h1>
           <Fade in={hover} timeout={400}>
-            <body className={classes.see_all}>
+            <body>
               See All <span style={{ fontWeight: "bold" }}>></span>
             </body>
           </Fade>
