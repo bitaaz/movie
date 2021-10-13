@@ -18,6 +18,9 @@ import SingleLineGridList from "./HorizontalScrollMenu";
 
 const Home = () => {
   const {
+    topRatedMovies,
+    upcomingMovies,
+    nowPlayingMovies,
     state,
     isLoading,
     error,
@@ -26,7 +29,7 @@ const Home = () => {
     setLoadMore,
   } = useHomeFetch();
 
-  console.log(state);
+  console.log(upcomingMovies);
 
   return (
     <>
@@ -51,10 +54,24 @@ const Home = () => {
           ))}
         </Grid>
       ) : (
-        <SingleLineGridList
-          gridItemsInfo={state.results}
-          title="Popular Movies"
-        />
+        <>
+          <SingleLineGridList
+            gridItemsInfo={state.results}
+            title="Popular Movies"
+          />
+          <SingleLineGridList
+            gridItemsInfo={nowPlayingMovies.results}
+            title="Now Playing Movies"
+          />
+          <SingleLineGridList
+            gridItemsInfo={upcomingMovies.results}
+            title="Upcoming Movies"
+          />
+          <SingleLineGridList
+            gridItemsInfo={topRatedMovies.results}
+            title="Top Rated Movies"
+          />
+        </>
       )}
 
       {searchedItem && isLoading && <Spinner />}
