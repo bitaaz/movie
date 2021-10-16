@@ -1,6 +1,5 @@
-import React, {useContext} from "react";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
-
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //components
 import Header from "./components/Header";
@@ -22,14 +21,11 @@ import { auth } from "./firebase";
 
 import UserProvider from "./context";
 import AuthProvider from "./contexts/AuthContext";
-import {AuthPrivateRoute, PrivateRoute} from "./PrivateRoute";
-
-
-
+import { AuthPrivateRoute, PrivateRoute } from "./PrivateRoute";
+import { ShowAllMovies } from "./components/ShowAllMovies";
 
 function App() {
   return (
-
     <Router>
       <AuthProvider>
         <UserProvider>
@@ -37,15 +33,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />;
             <Route path="/:movieId" element={<Movie />} />
-            <Route path="/*" element={<NotFound />} />
+            <Route path="/*/*" element={<NotFound />} />
+            <Route path="/see_all" element={<NotFound />} />
             {/*<Route path="/login" element={<FirebaseLogin />} />*/}
-            <AuthPrivateRoute path='/login' element={<FirebaseLogin/>} />
+            <AuthPrivateRoute path="/login" element={<FirebaseLogin />} />
             {/*<Route path="/signup" element={<Signup />} />*/}
-            <AuthPrivateRoute path='/signup' element={<Signup/>} />
+            <AuthPrivateRoute path="/signup" element={<Signup />} />
             {/*<Route path="/dashboard"  element={<Dashboard/>} />;*/}
-            <PrivateRoute path='/dashboard' element={<Dashboard/>} />
+            <PrivateRoute path="/dashboard" element={<Dashboard />} />
             <Route path="/update-profile" element={<UpdateProfile />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/see_all/:title" element={<ShowAllMovies />} />
           </Routes>
           ;
           <GlobalStyle />
