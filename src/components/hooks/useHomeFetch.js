@@ -16,9 +16,11 @@ export const useHomeFetch = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState(initialState);
   const [state, setState] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingNowPlaying, setIsLoadingNowPlaying] = useState(false);
   const [error, setError] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
   const [loadMore, setLoadMore] = useState(false);
+  const [loadMoreNowPlaying, setLoadMoreNowPlaying] = useState(false);
 
   const fetchMovies = async (page, searchedItem = "") => {
     try {
@@ -82,7 +84,7 @@ export const useHomeFetch = () => {
   const fetchNowPlayingMovies = async (page) => {
     try {
       setError(false);
-      setIsLoading(true);
+      setIsLoadingNowPlaying(true);
 
       const nowPlayingMoviesApi = await API.fetchNowPlayingMovies(page);
 
@@ -97,7 +99,7 @@ export const useHomeFetch = () => {
       setError(true);
     }
 
-    setIsLoading(false);
+    setIsLoadingNowPlaying(false);
   };
 
   //initial and search
@@ -172,6 +174,13 @@ export const useHomeFetch = () => {
     setLoadMore(false);
   }, [loadMore, searchedItem, state.page]);
 
+  useEffect(() => {
+    if (!loadMoreNowPlaying) return;
+
+    fetchNowPlayingMovies(nowPlayingMovies.page + 1, searchedItem);
+    setLoadMoreNowPlaying(false);
+  }, [loadMoreNowPlaying, searchedItem, state.page]);
+
   //write to sessionStorage
   useEffect(() => {
     if (!searchedItem) {
@@ -188,9 +197,11 @@ export const useHomeFetch = () => {
     nowPlayingMovies,
     state,
     isLoading,
+    isLoadingNowPlaying,
     error,
     setSearchedItem,
     searchedItem,
     setLoadMore,
+    setLoadMoreNowPlaying,
   };
 };
