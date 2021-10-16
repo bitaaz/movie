@@ -29,7 +29,7 @@ const Home = () => {
     setLoadMore,
   } = useHomeFetch();
 
-  console.log(upcomingMovies);
+  console.log(state);
 
   return (
     <>
@@ -58,10 +58,14 @@ const Home = () => {
           <SingleLineGridList
             gridItemsInfo={state.results}
             title="Popular Movies"
+            page={state.page}
+            totalPages={state.total_pages}
           />
           <SingleLineGridList
             gridItemsInfo={nowPlayingMovies.results}
             title="Now Playing Movies"
+            page={nowPlayingMovies.page}
+            totalPages={nowPlayingMovies.total_pages}
           />
           <SingleLineGridList
             gridItemsInfo={upcomingMovies.results}
