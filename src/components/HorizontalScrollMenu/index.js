@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -13,13 +14,21 @@ import {
 } from "@material-ui/icons";
 
 import { useStyles } from "./HorizontalScrollMenu.styles";
+import { ShowAllMovies } from "../ShowAllMovies";
 
-export default function SingleLineGridList({ gridItemsInfo, title }) {
+export default function SingleLineGridList({
+  gridItemsInfo,
+  title,
+  page,
+  totalPages,
+}) {
   const classes = useStyles();
   const [leftButtonVisible, setLeftButtonVisible] = useState(false);
   const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [hover, setHover] = useState(false);
   const [buttonsVisibleOnHover, setButtonsVisibleOnHover] = useState(false);
+
+  const navigate = useNavigate();
 
   const tileData = gridItemsInfo.map((item) => ({
     img: item.poster_path
@@ -70,21 +79,34 @@ export default function SingleLineGridList({ gridItemsInfo, title }) {
     buttonsFadeOnHorizontalLimit(scrollRef, direction);
   };
 
+  const data = {
+    title: title,
+    tileData: tileData,
+    page: page,
+    totalPages: totalPages,
+  };
+
   return (
     <Grid className={classes.root}>
       <Grid item xs={12} className={classes.title_grid}>
-        <Grid
-          className={classes.title_see_all_grid}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+        <Link
+          style={{ textDecoration: "none", color: "black" }}
+          to={{ pathname: "/see_all/" + title }}
+          state={{ data: data }}
         >
-          <h1 style={{ marginRight: "6px" }}>{title}</h1>
-          <Fade in={hover} timeout={400}>
-            <body>
-              See All <span style={{ fontWeight: "bold" }}>></span>
-            </body>
-          </Fade>
-        </Grid>
+          <Grid
+            className={classes.title_see_all_grid}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <h1 style={{ marginRight: "6px" }}>{title}</h1>
+            <Fade in={hover} timeout={400}>
+              <body>
+                See All <span style={{ fontWeight: "bold" }}>></span>
+              </body>
+            </Fade>
+          </Grid>
+        </Link>
       </Grid>
 
       <ImageList
