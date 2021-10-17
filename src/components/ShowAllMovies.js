@@ -27,17 +27,28 @@ export const ShowAllMovies = () => {
     isLoadingNowPlaying,
     setLoadMoreNowPlaying,
     nowPlayingMovies,
+    isLoadingUpcoming,
+    setLoadMoreUpcoming,
+    upcomingMovies,
+    isLoadingTop,
+    setLoadMoreTop,
+    topRatedMovies,
   } = useHomeFetch();
+
   const location = useLocation();
   const { data } = location.state;
-  if (isLoading === true) {
+  if (isLoading) {
     loadMoreMovies(state, data);
+  } else if (isLoadingNowPlaying) {
+    loadMoreMovies(nowPlayingMovies, data);
+  } else if (isLoadingUpcoming) {
+    loadMoreMovies(upcomingMovies, data);
+  } else if (isLoadingTop) {
+    loadMoreMovies(topRatedMovies, data);
   }
 
-  // else if (isLoadingNowPlaying === true) {
-  //   loadMoreMovies(nowPlayingMovies, data);
-  // }
-  console.log(data.page);
+  console.log(isLoadingTop);
+
   return (
     <>
       <Navbar />
@@ -46,15 +57,53 @@ export const ShowAllMovies = () => {
           <Thumb key={tile.id} clickable image={tile.img} movieId={tile.id} />
         ))}
       </Grid>
-      {isLoading && <Spinner />}
-      {!isLoading && data.page < data.totalPages && (
-        <Button
-          text="Load More"
-          callback={() => {
-            setLoadMore(true);
-          }}
-        />
+      {data.title === "Popular Movies" && isLoading && <Spinner />}
+      {data.title === "Popular Movies" &&
+        !isLoading &&
+        data.page < data.totalPages && (
+          <Button
+            text="Load More"
+            callback={() => {
+              setLoadMore(true);
+            }}
+          />
+        )}
+
+      {data.title === "Now Playing Movies" && isLoadingNowPlaying && (
+        <Spinner />
       )}
+      {data.title === "Now Playing Movies" &&
+        !isLoadingNowPlaying &&
+        data.page < data.totalPages && (
+          <Button
+            text="Load More"
+            callback={() => {
+              setLoadMoreNowPlaying(true);
+            }}
+          />
+        )}
+      {data.title === "Upcoming Movies" && isLoadingUpcoming && <Spinner />}
+      {data.title === "Upcoming Movies" &&
+        !isLoadingUpcoming &&
+        data.page < data.totalPages && (
+          <Button
+            text="Load More"
+            callback={() => {
+              setLoadMoreUpcoming(true);
+            }}
+          />
+        )}
+      {data.title === "Top Rated Movies" && isLoadingTop && <Spinner />}
+      {data.title === "Top Rated Movies" &&
+        !isLoadingTop &&
+        data.page < data.totalPages && (
+          <Button
+            text="Load More"
+            callback={() => {
+              setLoadMoreTop(true);
+            }}
+          />
+        )}
     </>
   );
 };
