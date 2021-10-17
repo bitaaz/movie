@@ -7,10 +7,11 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
-import { Fab, Fade, Grid, Typography } from "@material-ui/core";
+import { Fab, Fade, Grid, IconButton, Typography } from "@material-ui/core";
 import {
   ArrowBackIosRounded,
   ArrowForwardIosRounded,
+  ThumbUp,
 } from "@material-ui/icons";
 
 import { useStyles } from "./HorizontalScrollMenu.styles";
@@ -36,6 +37,8 @@ export default function SingleLineGridList({
       : NoImage,
     id: item.id,
     title: item.original_title,
+    vote_average: item.vote_average,
+    likes: parseFloat((item.vote_average / 10) * 100).toPrecision(2),
   }));
 
   const scrollRef = useRef(null);
@@ -121,7 +124,83 @@ export default function SingleLineGridList({
             key={tile.id}
             style={{ height: "330px", width: "200px", margin: "5px" }}
           >
-            <Thumb clickable image={tile.img} movieId={tile.id} />
+            <div style={{ position: "relative" }}>
+              <Thumb clickable image={tile.img} movieId={tile.id} />
+              {/*<div*/}
+              {/*  style={{*/}
+              {/*    position: "absolute",*/}
+              {/*    color: "black",*/}
+              {/*    top: 8,*/}
+              {/*    left: "50%",*/}
+              {/*    transform: "translateX(-50%)",*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  Your text*/}
+              {/*</div>*/}
+              <div
+                style={{
+                  position: "absolute",
+                  color: "black",
+                  top: "80%",
+                  left: "23%",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <Typography
+                    style={{
+                      fontWeight: "bold",
+                      backgroundColor: "#eeeeee",
+                      padding: "2px",
+                      paddingLeft: "6px",
+                      borderStartStartRadius: "10px",
+                      borderEndStartRadius: "10px",
+                      fontSize: "10px",
+                    }}
+                  >
+                    IMDB{" "}
+                  </Typography>
+                  <Typography
+                    style={{
+                      background: "#e0e0e0",
+                      padding: "2px",
+                      paddingRight: "5px",
+                      paddingLeft: "3px",
+                      borderStartEndRadius: "10px",
+                      borderEndEndRadius: "10px",
+                      fontSize: "10px",
+                    }}
+                  >
+                    {tile.vote_average} / 10
+                  </Typography>
+                </div>
+                {/*<div*/}
+                {/*  style={{*/}
+                {/*    display: "flex",*/}
+                {/*    alignItems: "center",*/}
+                {/*    backgroundColor: "#eeeeee",*/}
+                {/*  }}*/}
+                {/*>*/}
+                {/*  <IconButton*/}
+                {/*    style={{*/}
+                {/*      width: "5px",*/}
+                {/*      height: "5px",*/}
+                {/*      marginLeft: "10px",*/}
+                {/*    }}*/}
+                {/*  >*/}
+                {/*    <ThumbUp style={{ width: "15px", height: "15px" }} />*/}
+                {/*  </IconButton>*/}
+                {/*  <Typography*/}
+                {/*    style={{*/}
+                {/*      fontSize: "10px",*/}
+                {/*    }}*/}
+                {/*  >*/}
+                {/*    {tile.likes}%*/}
+                {/*  </Typography>*/}
+                {/*</div>*/}
+              </div>
+            </div>
+
             <Typography>{tile.title}</Typography>
           </ImageListItem>
         ))}
