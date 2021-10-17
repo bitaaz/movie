@@ -17,10 +17,14 @@ export const useHomeFetch = () => {
   const [state, setState] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingNowPlaying, setIsLoadingNowPlaying] = useState(false);
+  const [isLoadingUpcoming, setIsLoadingUpcoming] = useState(false);
+  const [isLoadingTop, setIsLoadingTop] = useState(false);
   const [error, setError] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
   const [loadMore, setLoadMore] = useState(false);
   const [loadMoreNowPlaying, setLoadMoreNowPlaying] = useState(false);
+  const [loadMoreUpcoming, setLoadMoreUpcoming] = useState(false);
+  const [loadMoreTop, setLoadMoreTop] = useState(false);
 
   const fetchMovies = async (page, searchedItem = "") => {
     try {
@@ -43,7 +47,7 @@ export const useHomeFetch = () => {
   const fetchTopRatedMovies = async (page) => {
     try {
       setError(false);
-      setIsLoading(true);
+      setIsLoadingTop(true);
 
       const topRatedMoviesApi = await API.fetchTopRatedMovies(page);
 
@@ -57,13 +61,13 @@ export const useHomeFetch = () => {
     } catch (error) {
       setError(true);
     }
-    setIsLoading(false);
+    setIsLoadingTop(false);
   };
 
   const fetchUpcomingMovies = async (page) => {
     try {
       setError(false);
-      setIsLoading(true);
+      setIsLoadingUpcoming(true);
 
       const upcomingMoviesApi = await API.fetchUpcomingMovies(page);
 
@@ -78,7 +82,7 @@ export const useHomeFetch = () => {
       setError(true);
     }
 
-    setIsLoading(false);
+    setIsLoadingUpcoming(false);
   };
 
   const fetchNowPlayingMovies = async (page) => {
@@ -174,12 +178,29 @@ export const useHomeFetch = () => {
     setLoadMore(false);
   }, [loadMore, searchedItem, state.page]);
 
+  //load more now playing movies
   useEffect(() => {
     if (!loadMoreNowPlaying) return;
 
-    fetchNowPlayingMovies(nowPlayingMovies.page + 1, searchedItem);
+    fetchNowPlayingMovies(nowPlayingMovies.page + 1);
     setLoadMoreNowPlaying(false);
-  }, [loadMoreNowPlaying, searchedItem, state.page]);
+  }, [loadMoreNowPlaying, nowPlayingMovies.page]);
+
+  //load more upcoming movies
+  useEffect(() => {
+    if (!loadMoreUpcoming) return;
+
+    fetchUpcomingMovies(upcomingMovies.page + 1);
+    setLoadMoreUpcoming(false);
+  }, [loadMoreUpcoming, upcomingMovies.page]);
+
+  //load more top movies
+  useEffect(() => {
+    if (!loadMoreTop) return;
+
+    fetchTopRatedMovies(topRatedMovies.page + 1);
+    setLoadMoreTop(false);
+  }, [loadMoreTop, topRatedMovies.page]);
 
   //write to sessionStorage
   useEffect(() => {
@@ -198,10 +219,14 @@ export const useHomeFetch = () => {
     state,
     isLoading,
     isLoadingNowPlaying,
+    isLoadingUpcoming,
+    isLoadingTop,
     error,
     setSearchedItem,
     searchedItem,
     setLoadMore,
     setLoadMoreNowPlaying,
+    setLoadMoreUpcoming,
+    setLoadMoreTop,
   };
 };
