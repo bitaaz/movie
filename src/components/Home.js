@@ -70,10 +70,14 @@ const Home = () => {
           <SingleLineGridList
             gridItemsInfo={upcomingMovies.results}
             title="Upcoming Movies"
+            page={upcomingMovies.page}
+            totalPages={upcomingMovies.total_pages}
           />
           <SingleLineGridList
             gridItemsInfo={topRatedMovies.results}
             title="Top Rated Movies"
+            page={topRatedMovies.page}
+            totalPages={topRatedMovies.total_pages}
           />
         </>
       )}
