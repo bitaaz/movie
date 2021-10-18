@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "15px",
     height: "15px",
   },
-  title_see_all_grid: {
+  title_see_all_link: {
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
