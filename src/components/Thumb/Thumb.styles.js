@@ -8,9 +8,9 @@ export const Image = styled.img`
   border-radius: 20px;
   animation: animateThumb 0.5s;
 
-  :hover {
-    opacity: 0.2;
-  }
+  //:hover {
+  //  opacity: 0.2;
+  //}
 
   @keyframes animateThumb {
     from {
