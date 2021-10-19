@@ -20,7 +20,7 @@ const loadMoreMovies = (moviesInfo, data) => {
     title: item.original_title,
     vote_average: item.vote_average,
     likes: parseFloat((item.vote_average / 10) * 100).toPrecision(2),
-    release_date: item.release_date.substring(0, 4),
+    release_date: item.release_date ? item.release_date.substring(0, 4) : "",
     original_language: item.original_language,
   }));
 };
