@@ -4,9 +4,17 @@ import { createTheme } from "@material-ui/core/styles";
 const theme = createTheme({});
 
 export const useStyles = makeStyles({
-  crousel_div: {
+  carousel_div: {
     minHeight: "600px",
+    marginTop: theme.spacing(9),
     background: "#1c1c1c",
+
+    [theme.breakpoints.down(600)]: {
+      marginTop: theme.spacing(7),
+    },
+    [theme.breakpoints.down(384)]: {
+      marginTop: theme.spacing(11),
+    },
   },
 });
 
