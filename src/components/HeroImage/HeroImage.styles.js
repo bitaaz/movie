@@ -6,7 +6,7 @@ const theme = createTheme({});
 export const useStyles = makeStyles({
   carousel_div: {
     minHeight: "600px",
-    marginTop: theme.spacing(9),
+    marginTop: theme.spacing(11),
     background: "#1c1c1c",
 
     [theme.breakpoints.down(600)]: {
