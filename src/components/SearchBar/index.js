@@ -2,10 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 //style
 import { Wrapper, Content, Image } from "./SearchBar.styled";
+
 //image
 import SearchIcon from "../../images/search-icon.svg";
+import Navbar from "../Navbar";
+import { Button, Grid } from "@material-ui/core";
+import SearchBar from "material-ui-search-bar";
 
-const SearchBar = ({ setSearchedItem }) => {
+const MovieSearchBar = ({ setSearchedItem }) => {
   const [state, setState] = useState("");
   const initial = useRef(true);
 
@@ -23,22 +27,44 @@ const SearchBar = ({ setSearchedItem }) => {
   }, [setSearchedItem, state]);
 
   return (
-    <Wrapper>
-      <Content>
-        <Image src={SearchIcon} alt="search-icon" />
-        <input
-          type="text"
-          placeholder="Search Movie"
-          onChange={(event) => setState(event.currentTarget.value)}
+    <>
+      <Grid
+        container
+        justify="center"
+        style={{
+          padding: "20px",
+          background: "#222222",
+        }}
+      >
+        <SearchBar
           value={state}
+          onChange={(newValue) => setState(newValue)}
+          style={{
+            width: "70%",
+            background: "#E0E0E0",
+            borderRadius: "20px",
+          }}
+          placeholder="Search Movies..."
         />
-      </Content>
-    </Wrapper>
+      </Grid>
+
+      {/*<Wrapper>*/}
+      {/*  <Content>*/}
+      {/*<Image src={SearchIcon} alt="search-icon" />*/}
+      {/*<input*/}
+      {/*  type="text"*/}
+      {/*  placeholder="Search Movie"*/}
+      {/*  onChange={(event) => setState(event.currentTarget.value)}*/}
+      {/*  value={state}*/}
+      {/*/>*/}
+      {/*  </Content>*/}
+      {/*</Wrapper>*/}
+    </>
   );
 };
 
-SearchBar.propTypes = {
+MovieSearchBar.propTypes = {
   setSearchedItem: PropTypes.func,
 };
 
-export default SearchBar;
+export default MovieSearchBar;
