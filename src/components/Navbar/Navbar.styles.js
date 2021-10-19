@@ -39,6 +39,8 @@ export const useStyles = makeStyles({
   },
 
   auth_grid: {
+    paddingTop: "10px",
+    paddingBottom: "5px",
     [theme.breakpoints.down(395)]: {
       marginTop: theme.spacing(2),
     },
