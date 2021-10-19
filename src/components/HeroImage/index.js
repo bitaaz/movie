@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 //style
 import { useStyles, contentStyle } from "./HeroImage.styles";
 import "./HeroImage.css";
-import NoImage from '../../images/no_image.jpg'
+import NoImage from "../../images/no_image.jpg";
 
 // import { Wrapper, Content, Text } from "./HeroImage.styles";
 
@@ -31,11 +31,13 @@ function HeroImage(props) {
         ? hero.original_title.substring(0, 25).concat("...")
         : hero.original_title,
     description: hero.overview.substring(0, 250).concat("..."),
-    image: hero.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${hero.backdrop_path}` : NoImage,
+    image: hero.backdrop_path
+      ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${hero.backdrop_path}`
+      : NoImage,
   }));
 
   return (
-    <Grid className={classes.crousel_div}>
+    <Grid className={classes.carousel_div}>
       <Carousel
         autoPlay
         fullHeightHover={false}
