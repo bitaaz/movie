@@ -16,7 +16,8 @@ import {
   Typography,
   Popover,
   Paper,
-  Divider, Grid,
+  Divider,
+  Grid,
 } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import {
@@ -29,6 +30,7 @@ import {
 
 //styles
 import { useStyles, theme } from "./Navbar.styles";
+import MovieSearchBar from "../SearchBar";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -68,7 +70,7 @@ const Navbar = () => {
   return (
     <ThemeProvider theme={theme}>
       <Grid className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="fixed" style={{ background: "transparent" }}>
           <Toolbar className={classes.toolbar}>
             <div className={classes.logo_link}>
               <Link to="/">
@@ -93,7 +95,6 @@ const Navbar = () => {
                       width: 35,
                       height: 35,
                     }}
-
                   />
                 </IconButton>
 
