@@ -11,7 +11,7 @@ import { useHomeFetch } from "./hooks/useHomeFetch";
 //noImage
 import NoImage from "../images/no_image.jpg";
 import Spinner from "./Spinner";
-import SearchBar from "./SearchBar";
+import MovieSearchBar from "./SearchBar";
 import Button from "./Button";
 import Navbar from "./Navbar";
 import SingleLineGridList from "./HorizontalScrollMenu";
@@ -33,11 +33,11 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      {!searchedItem && <Navbar />}
       {!searchedItem && state.results[0] ? (
         <HeroImage heros={state.results.slice(0, 6)} />
       ) : null}
-      <SearchBar setSearchedItem={setSearchedItem} />
+      <MovieSearchBar setSearchedItem={setSearchedItem} />
       {searchedItem ? (
         <Grid header="Search Results ">
           {state.results.map((movie) => (
