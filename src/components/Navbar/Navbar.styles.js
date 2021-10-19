@@ -15,8 +15,9 @@ export const useStyles = makeStyles({
   },
   toolbar: {
     padding: theme.spacing(2, 8, 2),
+    background: "rgba(0,0,0,0.9)",
     [theme.breakpoints.down(395)]: {
-      display:'block'
+      display: "block",
     },
   },
   logo_link: {
@@ -37,10 +38,10 @@ export const useStyles = makeStyles({
     marginLeft: "auto",
   },
 
-  auth_grid:{
+  auth_grid: {
     [theme.breakpoints.down(395)]: {
-      marginTop: theme.spacing(2)
-    }
+      marginTop: theme.spacing(2),
+    },
   },
   login_button: {
     fontSize: "18px",
@@ -56,7 +57,7 @@ export const useStyles = makeStyles({
       fontSize: "12px",
     },
     [theme.breakpoints.down(395)]: {
-      fontSize:'8px'
+      fontSize: "8px",
     },
   },
   signup_button: {
@@ -73,7 +74,7 @@ export const useStyles = makeStyles({
       fontSize: "12px",
     },
     [theme.breakpoints.down(395)]: {
-      fontSize:'8px'
+      fontSize: "8px",
     },
   },
 
