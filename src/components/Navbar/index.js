@@ -32,13 +32,12 @@ import {
 import { useStyles, theme } from "./Navbar.styles";
 import MovieSearchBar from "../SearchBar";
 
-const Navbar = () => {
+const Navbar = ({ showAllMoviesMode }) => {
   const classes = useStyles();
   const [error, setError] = useState("");
 
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  console.log(currentUser);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -69,7 +68,11 @@ const Navbar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid className={classes.root}>
+      <Grid
+        className={
+          showAllMoviesMode ? classes.show_all_movies_root : classes.root
+        }
+      >
         <AppBar position="fixed" style={{ background: "transparent" }}>
           <Toolbar className={classes.toolbar}>
             <div className={classes.logo_link}>

@@ -13,6 +13,10 @@ export const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
+  show_all_movies_root: {
+    flexGrow: 1,
+    marginBottom: "100px",
+  },
   toolbar: {
     padding: theme.spacing(2, 8, 2),
     background: "rgba(0,0,0,0.9)",
