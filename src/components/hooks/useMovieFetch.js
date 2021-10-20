@@ -77,7 +77,7 @@ export const useMovieFetch = (movieId) => {
   //write to sessionStorage
   useEffect(() => {
     sessionStorage.setItem(movieId, JSON.stringify(state));
-  }, [state]);
+  }, [state, movieId]);
 
   return { state, loading, error };
 };
