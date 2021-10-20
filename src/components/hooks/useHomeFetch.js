@@ -112,12 +112,10 @@ export const useHomeFetch = () => {
       const sessionState = isPersistedState("homeState");
 
       if (sessionState) {
-        console.log("grabbing from session storage");
         setState(sessionState);
         return;
       }
     }
-    console.log("grabbing from api");
     setState(initialState);
     fetchMovies(1, searchedItem);
   }, [searchedItem]);
@@ -128,12 +126,10 @@ export const useHomeFetch = () => {
       const sessionState = isPersistedState("topRated");
 
       if (sessionState) {
-        console.log("top rated from session");
         setTopRatedMovies(sessionState);
         return;
       }
     }
-    console.log("top rated from api");
     setTopRatedMovies(initialState);
     fetchTopRatedMovies(1);
   }, [searchedItem]);
@@ -144,12 +140,10 @@ export const useHomeFetch = () => {
       const sessionState = isPersistedState("nowPlaying");
 
       if (sessionState) {
-        console.log("now playing from session");
         setNowPlayingMovies(sessionState);
         return;
       }
     }
-    console.log("now playing from api");
     setNowPlayingMovies(initialState);
     fetchNowPlayingMovies(1);
   }, [searchedItem]);
@@ -160,12 +154,10 @@ export const useHomeFetch = () => {
       const sessionState = isPersistedState("upcoming");
 
       if (sessionState) {
-        console.log("upcoming from session");
         setUpcomingMovies(sessionState);
         return;
       }
     }
-    console.log("upcoming from api");
     setUpcomingMovies(initialState);
     fetchUpcomingMovies(1);
   }, [searchedItem]);
