@@ -6,7 +6,7 @@ import { Wrapper, Content } from "./Actor.styles";
 const Actor = ({ name, role, image }) => (
   <Wrapper>
     <Content>
-      <img src={image} />
+      <img src={image} alt="actor" />
       <h3>{name}</h3>
       <p>{role}</p>
     </Content>
