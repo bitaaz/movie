@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //config
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../config";
 //components
@@ -15,6 +15,7 @@ import MovieSearchBar from "./SearchBar";
 import Button from "./Button";
 import Navbar from "./Navbar";
 import SingleLineGridList from "./HorizontalScrollMenu";
+import { SearchResults } from "./SearchResults/SearchResults";
 
 const Home = () => {
   const {
@@ -39,20 +40,7 @@ const Home = () => {
       ) : null}
       <MovieSearchBar setSearchedItem={setSearchedItem} />
       {searchedItem ? (
-        <Grid header="Search Results ">
-          {state.results.map((movie) => (
-            <Thumb
-              key={movie.id}
-              clickable
-              image={
-                movie.poster_path
-                  ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                  : NoImage
-              }
-              movieId={movie.id}
-            />
-          ))}
-        </Grid>
+        <SearchResults searchedData={state} />
       ) : (
         <>
           <SingleLineGridList
