@@ -30,6 +30,7 @@ export const SearchResults = ({ searchedData }) => {
     <Grid header="Search Results ">
       {searchedData.results.map((movie) => (
         <div
+          key={movie.id}
           style={{
             position: "relative",
           }}
@@ -37,7 +38,6 @@ export const SearchResults = ({ searchedData }) => {
           onMouseLeave={() => handleMouseLeave(movie.id)}
         >
           <Thumb
-            key={movie.id}
             image={
               movie.poster_path
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
