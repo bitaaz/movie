@@ -16,7 +16,6 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useStyles, theme } from "./Dashboard.styles";
 import Navbar from "../Navbar";
 import { Alert } from "@material-ui/lab";
-import FirebaseLogin from "../FirebaseLogin/FirebaseLogin";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -28,7 +27,7 @@ export default function Dashboard() {
     setError("");
     try {
       await logout();
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         navigate("/");
       }, 500);
     } catch {
@@ -40,48 +39,48 @@ export default function Dashboard() {
     <ThemeProvider theme={theme}>
       {/*{currentUser ? (*/}
       {/*  <>*/}
-          <Navbar />
-          <Container maxWidth="sm" className={classes.container}>
-            {" "}
-            <Card className={classes.card}>
-              <CardContent>
-                <div className={classes.profile_div}>
-                  <Typography variant="h3" className={classes.profile_text}>
-                    Profile
-                  </Typography>
-                </div>
-                {error && (
-                  <Alert severity="error" className={classes.error}>
-                    {error}
-                  </Alert>
-                )}
-                <div className={classes.email_div}>
-                  <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                    Email:{" "}
-                  </Typography>
-                  <Typography variant="body1" className={classes.email}>
-                    {currentUser ? currentUser.email : ""}
-                  </Typography>
-                </div>
-                <Link to="/update-profile" style={{ textDecoration: "none" }}>
-                  <div className={classes.button_div}>
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      className={classes.button}
-                    >
-                      Update Profile
-                    </Button>
-                  </div>
-                </Link>
-              </CardContent>
-            </Card>
-            <div className={classes.logout_div}>
-              <Typography style={{ fontSize: "23px" }} onClick={handleLogout}>
-                Log Out
+      <Navbar />
+      <Container maxWidth="sm" className={classes.container}>
+        {" "}
+        <Card className={classes.card}>
+          <CardContent>
+            <div className={classes.profile_div}>
+              <Typography variant="h3" className={classes.profile_text}>
+                Profile
               </Typography>
-            </div>{" "}
-          </Container>
+            </div>
+            {error && (
+              <Alert severity="error" className={classes.error}>
+                {error}
+              </Alert>
+            )}
+            <div className={classes.email_div}>
+              <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                Email:{" "}
+              </Typography>
+              <Typography variant="body1" className={classes.email}>
+                {currentUser ? currentUser.email : ""}
+              </Typography>
+            </div>
+            <Link to="/update-profile" style={{ textDecoration: "none" }}>
+              <div className={classes.button_div}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  className={classes.button}
+                >
+                  Update Profile
+                </Button>
+              </div>
+            </Link>
+          </CardContent>
+        </Card>
+        <div className={classes.logout_div}>
+          <Typography style={{ fontSize: "23px" }} onClick={handleLogout}>
+            Log Out
+          </Typography>
+        </div>{" "}
+      </Container>
       {/*  </>*/}
       {/*) : (*/}
       {/*  // <div*/}

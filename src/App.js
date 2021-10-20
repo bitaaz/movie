@@ -1,23 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //components
-import Header from "./components/Header";
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
 import Dashboard from "./components/Dashboard";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile";
-import Navbar from "./components/Navbar";
 // import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import FirebaseLogin from "./components/FirebaseLogin/FirebaseLogin";
 
 //style
 import { GlobalStyle } from "./GlobalStyle";
-//context
-import { auth } from "./firebase";
 
 import UserProvider from "./context";
 import AuthProvider from "./contexts/AuthContext";

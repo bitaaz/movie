@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button, Container, Grid } from "@material-ui/core";
-import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../../config";
+import { Paper, Grid } from "@material-ui/core";
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../config";
 
 import PropTypes from "prop-types";
 //style

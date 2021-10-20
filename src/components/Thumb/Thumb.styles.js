@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import NoImage from "../../images/no_image.jpg";
 
 export const Image = styled.img`
   width: 100%;

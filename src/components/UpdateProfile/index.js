@@ -1,11 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-//components
-// import Button from "../Button";
-import Spinner from "../Spinner";
-import Home from "../Home";
 //contexts
 import { useAuth } from "../../contexts/AuthContext";
 //logo
@@ -15,7 +11,6 @@ import {
   Button,
   Container,
   TextField,
-  Grid,
   Card,
   CssBaseline,
   CardContent,
@@ -159,6 +154,7 @@ export default function UpdateProfile() {
                   variant="contained"
                   className={classes.submit}
                   onSubmit={handleSignup}
+                  disabled={loading}
                   style={{ fontSize: "23px" }}
                 >
                   Update

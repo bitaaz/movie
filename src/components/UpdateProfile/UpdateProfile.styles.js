@@ -1,7 +1,6 @@
 // import styled from "styled-components";
-import { Button, createTheme } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
-import { styled } from "@material-ui/styles";
+import { createTheme } from "@material-ui/core";
+
 import { makeStyles } from "@material-ui/styles";
 
 const theme = createTheme({});

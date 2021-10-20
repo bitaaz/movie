@@ -1,21 +1,16 @@
-import React, { useState } from "react";
-//config
-import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../config";
+import React from "react";
+
 //components
 import HeroImage from "./HeroImage";
-import Grid from "./Grid";
-import Thumb from "./Thumb";
-
-import { useHomeFetch } from "./hooks/useHomeFetch";
-
-//noImage
-import NoImage from "../images/no_image.jpg";
 import Spinner from "./Spinner";
 import MovieSearchBar from "./SearchBar";
 import Button from "./Button";
 import Navbar from "./Navbar";
 import SingleLineGridList from "./HorizontalScrollMenu";
 import { SearchResults } from "./SearchResults/SearchResults";
+
+//hooks
+import { useHomeFetch } from "./hooks/useHomeFetch";
 
 const Home = () => {
   const {
@@ -24,13 +19,12 @@ const Home = () => {
     nowPlayingMovies,
     state,
     isLoading,
-    error,
     setSearchedItem,
     searchedItem,
     setLoadMore,
   } = useHomeFetch();
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <>

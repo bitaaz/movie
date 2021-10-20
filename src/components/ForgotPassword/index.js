@@ -14,11 +14,9 @@ import {
   TextField,
   Typography,
   Button,
-  Paper,
   Avatar,
   CssBaseline,
   createTheme,
-  FormControl,
 } from "@material-ui/core";
 import { LockRounded } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";

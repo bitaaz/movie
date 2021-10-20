@@ -1,12 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-//style
-import { Wrapper, Content, Image } from "./SearchBar.styled";
 
-//image
-import SearchIcon from "../../images/search-icon.svg";
-import Navbar from "../Navbar";
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import SearchBar from "material-ui-search-bar";
 
 const MovieSearchBar = ({ setSearchedItem }) => {
@@ -30,7 +25,7 @@ const MovieSearchBar = ({ setSearchedItem }) => {
     <>
       <Grid
         container
-        justify="center"
+        justifyContent="center"
         style={{
           padding: "20px",
           background: "#222222",

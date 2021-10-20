@@ -35,14 +35,14 @@ export default function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsbscribe = auth.onAuthStateChanged((user) => {
-      const timer = setTimeout(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setTimeout(() => {
         setCurrentUser(user);
       }, 500);
 
       setLoading(false);
     });
-    return unsbscribe;
+    return unsubscribe;
   }, []);
 
   const value = {

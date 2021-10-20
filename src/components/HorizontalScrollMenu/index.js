@@ -2,12 +2,11 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
-import { Fab, Fade, Grid, IconButton, Typography } from "@material-ui/core";
+import { Fab, Fade, Grid, Typography } from "@material-ui/core";
 import {
   ArrowBackIosRounded,
   ArrowForwardIosRounded,
@@ -15,7 +14,6 @@ import {
 } from "@material-ui/icons";
 
 import { useStyles } from "./HorizontalScrollMenu.styles";
-import { ShowAllMovies } from "../ShowAllMovies";
 
 export default function SingleLineGridList({
   gridItemsInfo,
@@ -119,9 +117,9 @@ export default function SingleLineGridList({
         >
           <h1 style={{ marginRight: "6px" }}>{title}</h1>
           <Fade in={hover} timeout={400}>
-            <body>
+            <Typography style={{ fontSize: "13px" }}>
               See All <span style={{ fontWeight: "bold" }}>></span>
-            </body>
+            </Typography>
           </Fade>
         </Link>
       </Grid>
@@ -150,12 +148,7 @@ export default function SingleLineGridList({
                 onMouseEnter={() => handleMouseEnter(tile.id)}
                 onMouseLeave={() => handleMouseLeave(tile.id)}
               >
-                <Thumb
-                  clickable
-                  image={tile.img}
-                  movieId={tile.id}
-                  height="300px"
-                />
+                <Thumb image={tile.img} height="300px" />
                 <Fade in={isHovered[tile.id]} timeout={400}>
                   <div
                     style={{

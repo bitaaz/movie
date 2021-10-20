@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import API from "../../API";
 
 //styles
 import { Wrapper, Content, Text } from "./MovieInfo.styles";
@@ -11,7 +10,6 @@ import Thumb from "../Thumb";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 //image
 import NoImage from "../../images/no_image.jpg";
-import Navbar from "../Navbar";
 
 const MovieInfo = ({ movie }) => {
   return (
