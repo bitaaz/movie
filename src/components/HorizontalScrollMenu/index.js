@@ -137,122 +137,129 @@ export default function SingleLineGridList({
           <ImageListItem
             key={tile.id}
             style={{
-              height: "330px",
+              height: "400px",
               width: "200px",
               margin: "5px",
             }}
           >
-            <div
-              style={{
-                position: "relative",
-              }}
-              onMouseEnter={() => handleMouseEnter(tile.id)}
-              onMouseLeave={() => handleMouseLeave(tile.id)}
-            >
-              <Thumb clickable image={tile.img} movieId={tile.id} />
-              <Fade in={isHovered[tile.id]} timeout={400}>
-                <div
-                  style={{
-                    position: "absolute",
-                    transform: "translateX(-50%)",
-                    top: "0",
-                    left: "170px",
-                    width: "400px",
-                    cursor: "pointer",
-                    height: "100%",
-                    backgroundColor: "rgba(255,255,255,0.7)",
-                  }}
-                >
+            <Link to={`/${tile.id}`}>
+              <div
+                style={{
+                  position: "relative",
+                }}
+                onMouseEnter={() => handleMouseEnter(tile.id)}
+                onMouseLeave={() => handleMouseLeave(tile.id)}
+              >
+                <Thumb
+                  clickable
+                  image={tile.img}
+                  movieId={tile.id}
+                  height="300px"
+                />
+                <Fade in={isHovered[tile.id]} timeout={400}>
                   <div
                     style={{
-                      color: "white",
                       position: "absolute",
-                      top: "80%",
-                      left: "100px",
-                      display: "flex",
                       transform: "translateX(-50%)",
+                      top: "0",
+                      left: "170px",
+                      width: "400px",
+                      cursor: "pointer",
+                      height: "100%",
+                      backgroundColor: "rgba(255,255,255,0.5)",
                     }}
                   >
-                    <div style={{ display: "flex" }}>
-                      <Typography
-                        style={{
-                          fontWeight: "bold",
-                          backgroundColor: "#757575",
-                          padding: "2px",
-                          paddingLeft: "6px",
-                          borderStartStartRadius: "10px",
-                          borderEndStartRadius: "10px",
-                          fontSize: "10px",
-                        }}
-                      >
-                        IMDB{" "}
-                      </Typography>
-                      <Typography
-                        style={{
-                          background: "#616161",
-                          padding: "2px",
-                          paddingRight: "5px",
-                          paddingLeft: "3px",
-                          borderStartEndRadius: "10px",
-                          borderEndEndRadius: "10px",
-                          fontSize: "10px",
-                        }}
-                      >
-                        {tile.vote_average} / 10
-                      </Typography>
-                    </div>
                     <div
                       style={{
+                        color: "white",
+                        position: "absolute",
+                        top: "80%",
+                        left: "100px",
                         display: "flex",
-                        alignItems: "center",
-                        marginLeft: "3px",
+                        transform: "translateX(-50%)",
                       }}
                     >
-                      <ThumbUp
+                      <div style={{ display: "flex" }}>
+                        <Typography
+                          style={{
+                            fontWeight: "bold",
+                            backgroundColor: "#757575",
+                            padding: "2px",
+                            paddingLeft: "6px",
+                            borderStartStartRadius: "10px",
+                            borderEndStartRadius: "10px",
+                            fontSize: "10px",
+                          }}
+                        >
+                          IMDB{" "}
+                        </Typography>
+                        <Typography
+                          style={{
+                            background: "#616161",
+                            padding: "2px",
+                            paddingRight: "5px",
+                            paddingLeft: "3px",
+                            borderStartEndRadius: "10px",
+                            borderEndEndRadius: "10px",
+                            fontSize: "10px",
+                          }}
+                        >
+                          {tile.vote_average} / 10
+                        </Typography>
+                      </div>
+                      <div
                         style={{
-                          width: "20px",
-                          height: "20px",
-                          backgroundColor: "#757575",
-                          borderStartStartRadius: "10px",
-                          borderEndStartRadius: "10px",
-                          padding: "3px",
-                        }}
-                      />
-
-                      <Typography
-                        style={{
-                          fontSize: "10px",
-                          background: "#616161",
-                          borderStartEndRadius: "10px",
-                          borderEndEndRadius: "10px",
-                          padding: "2.5px",
+                          display: "flex",
+                          alignItems: "center",
+                          marginLeft: "3px",
                         }}
                       >
-                        {tile.likes}%
-                      </Typography>
+                        <ThumbUp
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            backgroundColor: "#757575",
+                            borderStartStartRadius: "10px",
+                            borderEndStartRadius: "10px",
+                            padding: "3px",
+                          }}
+                        />
+
+                        <Typography
+                          style={{
+                            fontSize: "10px",
+                            background: "#616161",
+                            borderStartEndRadius: "10px",
+                            borderEndEndRadius: "10px",
+                            padding: "2.5px",
+                          }}
+                        >
+                          {tile.likes}%
+                        </Typography>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Fade>
-              <Fade in={isHovered[tile.id]} timeout={400}>
-                <div
-                  style={{
-                    position: "absolute",
-                    color: "#424242",
-                    left: "20%",
-                    top: "90%",
-                    transform: "translateX(-50%)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Typography
-                    style={{ fontSize: "12px", fontWeight: "bolder" }}
+                </Fade>
+                <Fade in={isHovered[tile.id]} timeout={400}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      color: "black",
+                      left: "20%",
+                      top: "90%",
+                      transform: "translateX(-50%)",
+                      cursor: "pointer",
+                    }}
                   >
-                    {tile.release_date} - {tile.original_language}
-                  </Typography>
-                </div>
-              </Fade>
-            </div>
+                    <Typography
+                      style={{ fontSize: "12px", fontWeight: "bolder" }}
+                    >
+                      {tile.release_date} - {tile.original_language}
+                    </Typography>
+                  </div>
+                </Fade>
+              </div>
+            </Link>
 
             <Typography>{tile.title}</Typography>
           </ImageListItem>
