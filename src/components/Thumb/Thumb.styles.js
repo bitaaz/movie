@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import NoImage from "../../images/no_image.jpg";
 
 export const Image = styled.img`
   width: 100%;
+  height: ${({ height }) => height};
   max-width: 720px;
   transition: all 0.35s;
   object-fit: cover;
   border-radius: 20px;
+  background: dimgray;
   animation: animateThumb 0.5s;
 
   //:hover {

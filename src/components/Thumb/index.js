@@ -5,11 +5,11 @@ import { Image } from "./Thumb.styles";
 
 import { Link } from "react-router-dom";
 
-const Thumb = ({ image, movieId, clickable }) => (
+const Thumb = ({ image, movieId, clickable, height }) => (
   <div>
     {clickable ? (
       <Link to={`/${movieId}`}>
-        <Image src={image} alt="movie-thumb" />
+        <Image src={image} alt="movie-thumb" height={height} />
       </Link>
     ) : (
       <Image src={image} alt="movie-thumb" />
