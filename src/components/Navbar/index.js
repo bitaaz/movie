@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //context
 import { useAuth } from "../../contexts/AuthContext";
@@ -10,31 +10,27 @@ import {
   AppBar,
   Button,
   IconButton,
-  Menu,
-  MenuItem,
   Toolbar,
-  Typography,
   Popover,
-  Paper,
   Divider,
   Grid,
+  Typography,
+  Tooltip,
 } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import {
   AccountCircle,
   ExitToAppOutlined,
-  Favorite,
   FavoriteBorder,
   Person,
 } from "@material-ui/icons";
 
 //styles
 import { useStyles, theme } from "./Navbar.styles";
-import MovieSearchBar from "../SearchBar";
 
 const Navbar = ({ showAllMoviesMode }) => {
   const classes = useStyles();
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -56,13 +52,13 @@ const Navbar = ({ showAllMoviesMode }) => {
   };
 
   const handleLogout = async () => {
-    setError("");
+    setError(false);
 
     try {
       await logout();
       navigate("/");
     } catch {
-      setError("Failed to logout!");
+      setError(true);
     }
   };
 
@@ -83,23 +79,33 @@ const Navbar = ({ showAllMoviesMode }) => {
 
             {currentUser ? (
               <div>
-                <IconButton
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                  onClick={handleMenu}
-                  className={classes.profile_logo_person}
-                  disableRipple
-                  style={profileBgColor}
+                <Tooltip
+                  title={
+                    <Typography style={{ padding: "10px" }}>
+                      "Failed to log out!'
+                    </Typography>
+                  }
+                  placement="left"
+                  open={error}
                 >
-                  <Person
-                    style={{
-                      width: 35,
-                      height: 35,
-                    }}
-                  />
-                </IconButton>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    color="inherit"
+                    onClick={handleMenu}
+                    className={classes.profile_logo_person}
+                    disableRipple
+                    style={profileBgColor}
+                  >
+                    <Person
+                      style={{
+                        width: 35,
+                        height: 35,
+                      }}
+                    />
+                  </IconButton>
+                </Tooltip>
 
                 <Popover
                   id="menu-appbar"
@@ -131,7 +137,6 @@ const Navbar = ({ showAllMoviesMode }) => {
                           aria-controls="menu-appbar"
                           aria-haspopup="false"
                           className={classes.profile_logo}
-                          fontSizeLarge
                         >
                           <AccountCircle
                             style={{ color: "#eeeeee", width: 50, height: 50 }}
@@ -165,7 +170,6 @@ const Navbar = ({ showAllMoviesMode }) => {
                           aria-controls="menu-appbar"
                           aria-haspopup="false"
                           className={classes.profile_logo}
-                          fontSizeLarge
                         >
                           <FavoriteBorder
                             style={{ color: "#eeeeee", width: 20, height: 20 }}
@@ -190,7 +194,6 @@ const Navbar = ({ showAllMoviesMode }) => {
                           aria-controls="menu-appbar"
                           aria-haspopup="false"
                           className={classes.profile_logo}
-                          fontSizeLarge
                         >
                           <ExitToAppOutlined
                             style={{ color: "#eeeeee", width: 20, height: 20 }}
@@ -206,6 +209,7 @@ const Navbar = ({ showAllMoviesMode }) => {
                     </div>
                   </div>
                 </Popover>
+
                 {/* <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
