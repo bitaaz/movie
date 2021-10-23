@@ -11,6 +11,7 @@ import { SearchResults } from "./SearchResults/SearchResults";
 
 //hooks
 import { useHomeFetch } from "./hooks/useHomeFetch";
+import { Footer } from "./Footer/Footer";
 
 const Home = () => {
   const {
@@ -73,6 +74,7 @@ const Home = () => {
           }}
         />
       )}
+      <Footer />
     </>
   );
 };
