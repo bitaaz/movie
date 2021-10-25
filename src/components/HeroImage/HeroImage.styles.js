@@ -39,7 +39,7 @@ export const contentStyle = makeStyles({
   container_div: {
     position: "absolute",
     bottom: "10px",
-    top: "20px",
+    top: "5px",
     color: "white",
     maxWidth: "700px",
     minHeight: "100px",
