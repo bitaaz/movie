@@ -128,6 +128,7 @@ const Navbar = ({ showAllMoviesMode }) => {
                       marginTop: theme.spacing(2),
                     },
                   }}
+                  disableScrollLock={true}
                 >
                   <div className={classes.drop_down}>
                     <div style={{ display: "flex", alignItems: "center" }}>
