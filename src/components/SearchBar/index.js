@@ -28,7 +28,7 @@ const MovieSearchBar = ({ setSearchedItem }) => {
         justifyContent="center"
         style={{
           padding: "20px",
-          background: "#222222",
+          background: "#111111",
         }}
       >
         <SearchBar
@@ -36,7 +36,7 @@ const MovieSearchBar = ({ setSearchedItem }) => {
           onChange={(newValue) => setState(newValue)}
           style={{
             width: "70%",
-            background: "#E0E0E0",
+            background: "#BDBDBD",
             borderRadius: "20px",
           }}
           placeholder="Search Movies..."
