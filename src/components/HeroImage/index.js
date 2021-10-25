@@ -6,7 +6,6 @@ import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../config";
 import PropTypes from "prop-types";
 //style
 import { useStyles, contentStyle } from "./HeroImage.styles";
-import "./HeroImage.css";
 import NoImage from "../../images/no_image.jpg";
 
 // import { Wrapper, Content, Text } from "./HeroImage.styles";
@@ -40,6 +39,17 @@ function HeroImage(props) {
     <Grid className={classes.carousel_div}>
       <Carousel
         autoPlay
+        indicatorContainerProps={{
+          style: {
+            background: "rgba(0,0,0,0)",
+            padding: "5px 0",
+          },
+        }}
+        indicatorIconButtonProps={{
+          style: {
+            padding: "0 5px",
+          },
+        }}
         fullHeightHover={false}
         navButtonsProps={{
           style: {
