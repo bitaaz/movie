@@ -98,12 +98,7 @@ const Navbar = ({ showAllMoviesMode }) => {
                     disableRipple
                     style={profileBgColor}
                   >
-                    <Person
-                      style={{
-                        width: 35,
-                        height: 35,
-                      }}
-                    />
+                    <Person className={classes.person} />
                   </IconButton>
                 </Tooltip>
 
