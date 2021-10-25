@@ -19,9 +19,10 @@ export const useStyles = makeStyles({
   },
   toolbar: {
     padding: theme.spacing(2, 8, 2),
-    background: "rgba(0,0,0,0.9)",
+    background: "#1c1c1c",
     [theme.breakpoints.down(395)]: {
       display: "block",
+      padding: theme.spacing(2, 8, 2),
     },
   },
   logo_link: {
@@ -36,6 +37,16 @@ export const useStyles = makeStyles({
   profile_logo_person: {
     marginLeft: "auto",
     transition: "all 0.3s",
+  },
+
+  person: {
+    width: "35px",
+    height: "35px",
+
+    [theme.breakpoints.down("xs")]: {
+      width: "25px",
+      height: "25px",
+    },
   },
 
   profile_logo: {
