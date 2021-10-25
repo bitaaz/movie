@@ -1,24 +1,49 @@
 import { makeStyles } from "@material-ui/styles";
 
 export const useStyles = makeStyles({
-  footerItemTv: {
-    "&:hover": {
-      color: "white",
-      transition: "all 0.4s",
-    },
+  appBar: {
+    top: "auto",
+    bottom: 0,
+    marginTop: "30px",
+    backgroundColor: "#212121",
   },
-  footerItems: {
+  leftGrid: {
+    display: "flex",
+    margin: "5px",
+    alignItems: "center",
+    color: "#9E9E9E",
+  },
+  footerItemTv: {
+    display: "flex",
+    alignItems: "center",
     cursor: "pointer",
     "&:hover": {
       color: "white",
       transition: "all 0.4s",
     },
   },
-  otherLinks: {
+  tvLogo: {
+    width: "14px",
+    height: "14px",
+  },
+  tvText: {
+    marginLeft: "5px",
+    fontSize: "13px",
+  },
+  footerItems: {
+    marginLeft: "10px",
+    fontSize: "13px",
+    cursor: "pointer",
+    "&:hover": {
+      color: "white",
+      transition: "all 0.4s",
+    },
+  },
+  menuButton: {
     textTransform: "none",
     height: "20px",
     backgroundColor: "transparent",
-    color: "#616161",
+    color: "#9E9E9E",
     marginLeft: "10px",
     marginTop: "2px",
     "&:hover": {
@@ -26,15 +51,26 @@ export const useStyles = makeStyles({
       transition: "all 0.4s",
     },
   },
+  menuButtonText: {
+    fontSize: "13px",
+  },
   menu: {
     backgroundColor: "#212121",
-    color: "#616161",
+    color: "#9E9E9E",
+    marginTop: "-20px",
   },
   menu_items: {
+    fontSize: "13px",
     cursor: "pointer",
     "&:hover": {
       color: "white",
       transition: "all 0.4s",
     },
   },
+  rightGrid: { alignItems: "center", margin: "5px" },
+  socialMediasMenu: {
+    backgroundColor: "#212121",
+    color: "#9E9E9E",
+  },
+  menuItemLogo: { marginRight: "5px" },
 });
