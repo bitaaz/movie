@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/styles";
+import { theme } from "../Navbar/Navbar.styles";
 
 export const useStyles = makeStyles({
   appBar: {
@@ -12,6 +13,7 @@ export const useStyles = makeStyles({
     margin: "5px",
     alignItems: "center",
     color: "#9E9E9E",
+    flexGrow: "1",
   },
   footerItemTv: {
     display: "flex",

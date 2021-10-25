@@ -57,7 +57,7 @@ export const Footer = () => {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Grid container>
-        <Grid item sm={11} className={classes.leftGrid}>
+        <Grid item className={classes.leftGrid}>
           <Grid className={classes.footerItemTv}>
             <Tv className={classes.tvLogo} />
             <Typography className={classes.tvText}>Watch on TV</Typography>
