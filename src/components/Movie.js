@@ -16,6 +16,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
 //noImage
 import NoImage from "../images/no_image.jpg";
 import Navbar from "./Navbar";
+import { Footer } from "./Footer/Footer";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -50,6 +51,7 @@ const Movie = () => {
           ></Actor>
         ))}
       </Grid>
+      <Footer />
     </>
   );
 };
