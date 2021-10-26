@@ -4,6 +4,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Button,
+  Fab,
   FormControl,
   Grid,
   InputLabel,
@@ -16,7 +17,10 @@ import {
 } from "@material-ui/core";
 import {
   ArrowDropUp,
+  Cancel,
+  Clear,
   Instagram,
+  MoreVert,
   Telegram,
   Tv,
   Twitter,
@@ -26,14 +30,26 @@ import { useStyles } from "./Footer.styles";
 export const Footer = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElSocialMedias, setAnchorElSocialMedias] = useState(null);
+  const [anchorElSmallScreen, setAnchorElSmallScreen] = useState(null);
+  const [anchorElMore, setAnchorElMore] = useState(null);
 
   const [selectColor, setSelectColor] = useState({ background: "transparent" });
   const [selectColorSocialMedias, setSelectColorSocialMedias] = useState({
     background: "transparent",
   });
 
+  const [selectColorSmallScreen, setSelectColorSmallScreen] = useState({
+    background: "transparent",
+  });
+
+  const [selectColorMore, setSelectColorMore] = useState({
+    background: "transparent",
+  });
+
   const open = Boolean(anchorEl);
   const socialMediasOpen = Boolean(anchorElSocialMedias);
+  const openSmallScreen = Boolean(anchorElSmallScreen);
+  const openMore = Boolean(anchorElMore);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,6 +69,24 @@ export const Footer = () => {
     setSelectColorSocialMedias({ background: "transparent" });
   };
 
+  const handleClickSmallScreen = (event) => {
+    setAnchorElSmallScreen(event.currentTarget);
+    setSelectColorSmallScreen({ background: "rgba(0,0,0,0.5)" });
+  };
+  const handleCloseSmallScreen = () => {
+    setAnchorElSmallScreen(null);
+    setSelectColorSmallScreen({ background: "transparent" });
+  };
+
+  const handleClickMore = (event) => {
+    setAnchorElMore(event.currentTarget);
+    setSelectColorMore({ background: "rgba(0,0,0,0.5)" });
+  };
+  const handleCloseMore = () => {
+    setAnchorElMore(null);
+    setSelectColorMore({ background: "transparent" });
+  };
+
   const classes = useStyles();
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -63,10 +97,12 @@ export const Footer = () => {
             <Typography className={classes.tvText}>Watch on TV</Typography>
           </Grid>
           <Typography className={classes.footerItems}>Applications</Typography>
-          <Typography className={classes.footerItems}>Contact Us</Typography>
-          <Typography className={classes.footerItems}>Rules</Typography>
-          <Typography className={classes.footerItems}>FAQ</Typography>
-          <Typography className={classes.footerItems}>Jobs</Typography>
+          <Typography className={classes.footerItemsWithHide}>
+            Contact Us
+          </Typography>
+          <Typography className={classes.footerItemsWithHide}>Rules</Typography>
+          <Typography className={classes.footerItemsWithHide}>FAQ</Typography>
+          <Typography className={classes.footerItemsWithHide}>Jobs</Typography>
           <Button
             style={selectColor}
             disableRipple
@@ -88,6 +124,45 @@ export const Footer = () => {
             <MenuItem className={classes.menu_items}>Logo</MenuItem>
             <MenuItem className={classes.menu_items}>Internet Traffic</MenuItem>
             <MenuItem className={classes.menu_items}>Download Films</MenuItem>
+          </Menu>
+          <Button
+            style={selectColorSmallScreen}
+            disableRipple
+            onClick={handleClickSmallScreen}
+            className={classes.menuButtonSmallScreen}
+          >
+            <Typography className={classes.menuButtonText}>
+              Useful Links
+            </Typography>
+            <ArrowDropUp className={classes.arrowUp} />
+          </Button>
+          <Menu
+            open={openSmallScreen}
+            onClose={handleCloseSmallScreen}
+            anchorEl={anchorElSmallScreen}
+            PopoverClasses={{ paper: classes.fullScreenMenu }}
+            disableScrollLock={true}
+          >
+            <Cancel
+              className={classes.cancel}
+              onClick={handleCloseSmallScreen}
+            />
+            <MenuItem
+              style={{ marginTop: "350px" }}
+              className={classes.fullScreenMenuItems}
+            >
+              Contact Us
+            </MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>Rules</MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>FAQ</MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>Jobs</MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>Logo</MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>
+              Internet Traffic
+            </MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>
+              Download Films
+            </MenuItem>
           </Menu>
         </Grid>
         <Grid className={classes.rightGrid}>
@@ -117,6 +192,28 @@ export const Footer = () => {
               <Twitter className={classes.menuItemLogo} /> Twitter
             </MenuItem>
             <MenuItem className={classes.menu_items}>
+              <Instagram className={classes.menuItemLogo} /> Instagram
+            </MenuItem>
+          </Menu>
+          <MoreVert className={classes.moreVert} onClick={handleClickMore} />
+          <Menu
+            open={openMore}
+            onClose={handleCloseMore}
+            anchorEl={anchorElMore}
+            classes={{ paper: classes.fullScreenMenu }}
+            disableScrollLock={true}
+          >
+            <Cancel className={classes.cancel} onClick={handleCloseMore} />
+            <MenuItem
+              style={{ marginTop: "350px" }}
+              className={classes.fullScreenMenuItems}
+            >
+              <Telegram className={classes.menuItemLogo} /> Telegram
+            </MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>
+              <Twitter className={classes.menuItemLogo} /> Twitter
+            </MenuItem>
+            <MenuItem className={classes.fullScreenMenuItems}>
               <Instagram className={classes.menuItemLogo} /> Instagram
             </MenuItem>
           </Menu>
