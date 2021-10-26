@@ -134,9 +134,7 @@ const Navbar = ({ showAllMoviesMode }) => {
                           aria-haspopup="false"
                           className={classes.profile_logo}
                         >
-                          <AccountCircle
-                            style={{ color: "#eeeeee", width: 50, height: 50 }}
-                          />
+                          <AccountCircle className={classes.accountCircle} />
                         </IconButton>
                       </div>
                       <div>
@@ -167,9 +165,7 @@ const Navbar = ({ showAllMoviesMode }) => {
                           aria-haspopup="false"
                           className={classes.profile_logo}
                         >
-                          <FavoriteBorder
-                            style={{ color: "#eeeeee", width: 20, height: 20 }}
-                          />
+                          <FavoriteBorder className={classes.icons} />
                         </IconButton>
                       </div>
                       <div className={classes.drop_down_fav}>
@@ -191,9 +187,7 @@ const Navbar = ({ showAllMoviesMode }) => {
                           aria-haspopup="false"
                           className={classes.profile_logo}
                         >
-                          <ExitToAppOutlined
-                            style={{ color: "#eeeeee", width: 20, height: 20 }}
-                          />
+                          <ExitToAppOutlined className={classes.icons} />
                         </IconButton>
                       </div>
                       <div

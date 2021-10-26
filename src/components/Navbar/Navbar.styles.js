@@ -39,6 +39,16 @@ export const useStyles = makeStyles({
     transition: "all 0.3s",
   },
 
+  accountCircle: {
+    color: "#eeeeee",
+    width: 50,
+    height: 50,
+    [theme.breakpoints.down("xs")]: {
+      width: 30,
+      height: 30,
+    },
+  },
+
   person: {
     width: "35px",
     height: "35px",
@@ -110,6 +120,9 @@ export const useStyles = makeStyles({
     "&:hover": {
       color: "#bdbdbd",
     },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "17px",
+    },
   },
   drop_down_fav: {
     cursor: "pointer",
@@ -120,6 +133,10 @@ export const useStyles = makeStyles({
     "&:hover": {
       color: "#bdbdbd",
     },
+
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "15px",
+    },
   },
   drop_down_logout: {
     cursor: "pointer",
@@ -129,6 +146,19 @@ export const useStyles = makeStyles({
 
     "&:hover": {
       color: "#bdbdbd",
+    },
+
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "15px",
+    },
+  },
+  icons: {
+    color: "#eeeeee",
+    width: 20,
+    height: 20,
+    [theme.breakpoints.down("xs")]: {
+      width: 15,
+      height: 15,
     },
   },
 });
