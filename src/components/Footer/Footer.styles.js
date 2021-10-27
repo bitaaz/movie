@@ -152,6 +152,7 @@ export const useStyles = makeStyles({
     maxHeight: "unset",
     maxWidth: "unset",
     background: "#212121",
+    marginLeft: "-15px",
     [theme.breakpoints.up(700)]: {
       display: "none",
     },
