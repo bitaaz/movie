@@ -15,6 +15,8 @@ import {
 
 import { useStyles } from "./HorizontalScrollMenu.styles";
 
+import { BrowserView, MobileView } from "react-device-detect";
+
 export default function SingleLineGridList({
   gridItemsInfo,
   title,
@@ -95,11 +97,18 @@ export default function SingleLineGridList({
           className={classes.title_see_all_link}
         >
           <h1 style={{ marginRight: "6px" }}>{title}</h1>
-          <Fade in={hover} timeout={400}>
+          <BrowserView>
+            <Fade in={hover} timeout={400}>
+              <Typography style={{ fontSize: "13px" }}>
+                See All <span style={{ fontWeight: "bold" }}>></span>
+              </Typography>
+            </Fade>
+          </BrowserView>
+          <MobileView>
             <Typography style={{ fontSize: "13px" }}>
               See All <span style={{ fontWeight: "bold" }}>></span>
             </Typography>
-          </Fade>
+          </MobileView>
         </Link>
       </Grid>
 
