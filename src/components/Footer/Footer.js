@@ -17,6 +17,7 @@ import {
   Twitter,
 } from "@material-ui/icons";
 import { useStyles } from "./Footer.styles";
+import { isMobile } from "react-device-detect";
 
 export const Footer = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -118,7 +119,11 @@ export const Footer = () => {
             open={openSmallScreen}
             onClose={handleCloseSmallScreen}
             anchorEl={anchorElSmallScreen}
-            PopoverClasses={{ paper: classes.fullScreenMenu }}
+            PopoverClasses={{
+              paper: isMobile
+                ? classes.fullScreenMenuMobile
+                : classes.fullScreenMenu,
+            }}
             marginThreshold={0}
             disableScrollLock={true}
           >
@@ -179,7 +184,11 @@ export const Footer = () => {
             open={openMore}
             onClose={handleCloseMore}
             anchorEl={anchorElMore}
-            classes={{ paper: classes.fullScreenMenu }}
+            classes={{
+              paper: isMobile
+                ? classes.fullScreenMenuMobile
+                : classes.fullScreenMenu,
+            }}
             disableScrollLock={true}
             marginThreshold={0}
           >

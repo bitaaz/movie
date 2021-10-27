@@ -157,6 +157,16 @@ export const useStyles = makeStyles({
       display: "none",
     },
   },
+  fullScreenMenuMobile: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "unset",
+    maxWidth: "unset",
+    background: "#212121",
+    [theme.breakpoints.up(700)]: {
+      display: "none",
+    },
+  },
   fullScreenMenuItems: {
     marginBottom: "10px",
     fontSize: "13px",
