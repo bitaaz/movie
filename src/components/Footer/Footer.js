@@ -1,24 +1,15 @@
 import React, { useState } from "react";
 import {
   AppBar,
-  BottomNavigation,
-  BottomNavigationAction,
   Button,
-  Fab,
-  FormControl,
   Grid,
-  InputLabel,
   Menu,
   MenuItem,
-  Select,
-  TextField,
-  Tooltip,
   Typography,
 } from "@material-ui/core";
 import {
   ArrowDropUp,
   Cancel,
-  Clear,
   Instagram,
   MoreVert,
   Telegram,
@@ -35,14 +26,6 @@ export const Footer = () => {
 
   const [selectColor, setSelectColor] = useState({ background: "transparent" });
   const [selectColorSocialMedias, setSelectColorSocialMedias] = useState({
-    background: "transparent",
-  });
-
-  const [selectColorSmallScreen, setSelectColorSmallScreen] = useState({
-    background: "transparent",
-  });
-
-  const [selectColorMore, setSelectColorMore] = useState({
     background: "transparent",
   });
 
@@ -71,20 +54,16 @@ export const Footer = () => {
 
   const handleClickSmallScreen = (event) => {
     setAnchorElSmallScreen(event.currentTarget);
-    setSelectColorSmallScreen({ background: "rgba(0,0,0,0.5)" });
   };
   const handleCloseSmallScreen = () => {
     setAnchorElSmallScreen(null);
-    setSelectColorSmallScreen({ background: "transparent" });
   };
 
   const handleClickMore = (event) => {
     setAnchorElMore(event.currentTarget);
-    setSelectColorMore({ background: "rgba(0,0,0,0.5)" });
   };
   const handleCloseMore = () => {
     setAnchorElMore(null);
-    setSelectColorMore({ background: "transparent" });
   };
 
   const classes = useStyles();
@@ -126,7 +105,6 @@ export const Footer = () => {
             <MenuItem className={classes.menu_items}>Download Films</MenuItem>
           </Menu>
           <Button
-            style={selectColorSmallScreen}
             disableRipple
             onClick={handleClickSmallScreen}
             className={classes.menuButtonSmallScreen}
@@ -141,6 +119,7 @@ export const Footer = () => {
             onClose={handleCloseSmallScreen}
             anchorEl={anchorElSmallScreen}
             PopoverClasses={{ paper: classes.fullScreenMenu }}
+            marginThreshold={0}
             disableScrollLock={true}
           >
             <Cancel
@@ -202,6 +181,7 @@ export const Footer = () => {
             anchorEl={anchorElMore}
             classes={{ paper: classes.fullScreenMenu }}
             disableScrollLock={true}
+            marginThreshold={0}
           >
             <Cancel className={classes.cancel} onClick={handleCloseMore} />
             <MenuItem
