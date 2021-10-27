@@ -14,7 +14,10 @@ export const useStyles = makeStyles(() => ({
     width: "100%",
     height: "360px",
     overflowY: "hidden",
-    overflowX: "hidden",
+    overflowX: "auto",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
   },
   title_grid: {
     paddingLeft: "10px",

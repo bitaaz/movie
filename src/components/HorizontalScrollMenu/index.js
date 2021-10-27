@@ -22,13 +22,14 @@ export default function SingleLineGridList({
   totalPages,
 }) {
   const classes = useStyles();
-  const [leftButtonVisible, setLeftButtonVisible] = useState(false);
-  const [rightButtonVisible, setRightButtonVisible] = useState(true);
   const [hover, setHover] = useState(false);
-  const [buttonsVisibleOnHover, setButtonsVisibleOnHover] = useState(false);
+  const [buttonsVisibleOnHover, setButtonsVisibleOnHover] = useState(true);
   const [detailsVisibleOnHover, setDetailsVisibleOnHover] = useState({
     isHovered: {},
   });
+
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
 
   const tileData = gridItemsInfo.map((item) => ({
     img: item.poster_path
@@ -43,34 +44,6 @@ export default function SingleLineGridList({
   }));
 
   const scrollRef = useRef(null);
-
-  const buttonsFadeOnHorizontalLimit = (scrollRef, direction) => {
-    setTimeout(() => {
-      if (
-        (scrollRef.current.scrollLeft > 0 && direction === "right") ||
-        (scrollRef.current.scrollLeft > window.innerWidth &&
-          direction === "left")
-      ) {
-        setLeftButtonVisible(true);
-      } else {
-        setLeftButtonVisible(false);
-      }
-    }, 100);
-
-    setTimeout(() => {
-      if (
-        scrollRef.current.scrollLeft >=
-          window.innerWidth *
-            ((210 * gridItemsInfo.length) / window.innerWidth - 2) &&
-        direction === "right"
-      ) {
-        setRightButtonVisible(false);
-      } else {
-        setRightButtonVisible(true);
-      }
-    }, 100);
-  };
-
   const scroll = (direction) => {
     if (direction === "left") {
       scrollRef.current.scrollLeft -=
@@ -79,9 +52,15 @@ export default function SingleLineGridList({
       scrollRef.current.scrollLeft +=
         window.innerWidth - window.innerWidth / 10;
     }
-
-    buttonsFadeOnHorizontalLimit(scrollRef, direction);
+    setCurrentScrollPosition(scrollRef.current.scrollLeft);
   };
+
+  if (isScrolling) {
+    setTimeout(() => {
+      setCurrentScrollPosition(scrollRef.current.scrollLeft);
+      setIsScrolling(false);
+    }, 400);
+  }
 
   const data = {
     title: title,
@@ -128,6 +107,8 @@ export default function SingleLineGridList({
         className={classes.gridList}
         style={{ scrollBehavior: "smooth" }}
         ref={scrollRef}
+        id={"imageList"}
+        onScroll={() => setIsScrolling(true)}
         onMouseEnter={() => setButtonsVisibleOnHover(true)}
         onMouseLeave={() => setButtonsVisibleOnHover(false)}
       >
@@ -258,7 +239,7 @@ export default function SingleLineGridList({
           </ImageListItem>
         ))}
 
-        {leftButtonVisible && (
+        {!isScrolling && currentScrollPosition > 0 && (
           <Fade in={buttonsVisibleOnHover} timeout={300}>
             <Grid
               style={{
@@ -279,27 +260,30 @@ export default function SingleLineGridList({
             </Grid>
           </Fade>
         )}
-        {rightButtonVisible && (
-          <Fade in={buttonsVisibleOnHover} timeout={300}>
-            <Grid
-              style={{
-                alignItems: "center",
-                display: "flex",
-                height: "330px",
-              }}
-            >
-              <Fab
-                className={classes.fab}
+        {currentScrollPosition <
+          window.innerWidth *
+            ((210 * gridItemsInfo.length) / window.innerWidth - 1) &&
+          !isScrolling && (
+            <Fade in={buttonsVisibleOnHover} timeout={300}>
+              <Grid
                 style={{
-                  right: "0",
+                  alignItems: "center",
+                  display: "flex",
+                  height: "330px",
                 }}
-                onClick={() => scroll("right")}
               >
-                <ArrowForwardIosRounded className={classes.arrow_button} />
-              </Fab>
-            </Grid>
-          </Fade>
-        )}
+                <Fab
+                  className={classes.fab}
+                  style={{
+                    right: "0",
+                  }}
+                  onClick={() => scroll("right")}
+                >
+                  <ArrowForwardIosRounded className={classes.arrow_button} />
+                </Fab>
+              </Grid>
+            </Fade>
+          )}
       </ImageList>
     </Grid>
   );
