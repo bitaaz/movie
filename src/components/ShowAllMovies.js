@@ -69,8 +69,6 @@ export const ShowAllMovies = () => {
     });
   };
 
-  console.log(isLoadingTop);
-
   const { isHovered } = detailsVisibleOnHover;
 
   return (
@@ -79,13 +77,14 @@ export const ShowAllMovies = () => {
       <Grid header={data.title}>
         {data.tileData.map((tile) => (
           <div
+            key={tile.id}
             style={{
               position: "relative",
             }}
             onMouseEnter={() => handleMouseEnter(tile.id)}
             onMouseLeave={() => handleMouseLeave(tile.id)}
           >
-            <Thumb key={tile.id} image={tile.img} height="350px" />
+            <Thumb image={tile.img} height="350px" />
             <Link to={`/${tile.id}`}>
               <Fade in={isHovered[tile.id]} timeout={400}>
                 <div
