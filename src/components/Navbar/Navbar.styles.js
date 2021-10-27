@@ -31,7 +31,7 @@ export const useStyles = makeStyles({
   logo: {
     maxWidth: 200,
     [theme.breakpoints.down("xs")]: {
-      maxWidth: 100,
+      maxWidth: 150,
     },
   },
   profile_logo_person: {
