@@ -55,7 +55,7 @@ export default function Dashboard() {
               </Alert>
             )}
             <div className={classes.email_div}>
-              <Typography variant="h5" style={{ fontWeight: "bold" }}>
+              <Typography variant="h5" className={classes.email_title}>
                 Email:{" "}
               </Typography>
               <Typography variant="body1" className={classes.email}>
@@ -76,7 +76,10 @@ export default function Dashboard() {
           </CardContent>
         </Card>
         <div className={classes.logout_div}>
-          <Typography style={{ fontSize: "23px" }} onClick={handleLogout}>
+          <Typography
+            className={classes.logout_typography}
+            onClick={handleLogout}
+          >
             Log Out
           </Typography>
         </div>{" "}

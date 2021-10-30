@@ -19,11 +19,13 @@ export const useStyles = makeStyles({
     fontSize: "40px",
     fontWeight: "bold",
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "30px",
+    },
   },
   error: {
     width: "100%",
     alignItems: "center",
-
     marginBottom: theme.spacing(3),
     fontSize: 18,
   },
@@ -32,9 +34,18 @@ export const useStyles = makeStyles({
     alignItems: "center",
     marginBottom: theme.spacing(3),
   },
+  email_title: {
+    fontWeight: "bold",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "18px",
+    },
+  },
   email: {
     marginLeft: theme.spacing(1),
     fontSize: "20px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "15px",
+    },
   },
   button_div: {
     alignItems: "center",
@@ -50,6 +61,9 @@ export const useStyles = makeStyles({
     "&:hover": {
       background: theme.palette.success.main,
     },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "15px",
+    },
   },
   logout_div: {
     marginTop: theme.spacing(2),
@@ -59,9 +73,14 @@ export const useStyles = makeStyles({
     color: theme.palette.success.dark,
     cursor: "pointer",
     transition: "all 0.3s",
-
     "&:hover": {
       color: theme.palette.success.main,
+    },
+  },
+  logout_typography: {
+    fontSize: "23px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "15px",
     },
   },
   login_typography: {
