@@ -285,6 +285,7 @@ export default function SingleLineGridList({
                   className={classes.fab}
                   style={{
                     right: "0",
+                    marginRight: "3px",
                   }}
                   onClick={() => scroll("right")}
                 >
