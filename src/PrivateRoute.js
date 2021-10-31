@@ -13,8 +13,6 @@ export function PrivateRoute({ element, path }) {
 export function AuthPrivateRoute({ element, path }) {
   const { currentUser } = useAuth();
 
-  console.log(currentUser);
-
   const ele = currentUser !== null ? <Navigate to="/" replace /> : element;
 
   return <Route path={path} element={ele} />;
