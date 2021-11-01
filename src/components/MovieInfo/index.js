@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 //styles
 import { Wrapper, Content, Text } from "./MovieInfo.styles";
 //components
 import Thumb from "../Thumb";
-
+import Rate from "../Rate";
 //config
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 //image
 import NoImage from "../../images/no_image.jpg";
+//context
+import { useAuth } from "../../contexts/AuthContext";
+import API from "../../API";
+import { ThumbDown, ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
 
 const MovieInfo = ({ movie }) => {
+  const { currentUser } = useAuth();
+
   return (
     <>
       <Wrapper backdrop={movie.backdrop_path}>
@@ -42,6 +49,11 @@ const MovieInfo = ({ movie }) => {
                 ))}
               </div>
             </div>
+            {currentUser && (
+              <div>
+                <Rate />
+              </div>
+            )}
           </Text>
         </Content>
       </Wrapper>
