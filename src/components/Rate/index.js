@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconButton } from "@material-ui/core";
-import { gThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
+import { ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
 
 const Rate = () => {
   const [likeState, setLikeState] = useState({
