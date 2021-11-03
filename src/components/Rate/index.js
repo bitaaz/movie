@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconButton } from "@material-ui/core";
 import { ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
+import { db } from "../../firebase";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
-const Rate = () => {
+const Rate = ({ movieId, email }) => {
+  const voteId = email + movieId;
+  const [voted, setVoted] = useState(false);
   const [likeState, setLikeState] = useState({
     alreadyLiked: false,
     alreadyDisliked: false,
@@ -10,7 +14,49 @@ const Rate = () => {
     dislikes: 0,
     total_votes: 0,
   });
+
+  const retrieveData = async () => {
+    const voteInfoDoc = doc(db, "usersVote/" + voteId);
+    const prevVoteData = await getDoc(voteInfoDoc);
+    if (prevVoteData.exists()) {
+      const voteData = await prevVoteData.data();
+      setLikeState({
+        alreadyLiked: voteData.likeState.alreadyLiked,
+        alreadyDisliked: voteData.likeState.alreadyDisliked,
+        likes: voteData.likeState.likes,
+        dislikes: voteData.likeState.dislikes,
+        total_votes: voteData.likeState.total_votes,
+      });
+
+      console.log(voteData);
+    }
+  };
+
+  useEffect(async () => {
+    await retrieveData();
+  }, []);
+
+  useEffect(() => {
+    if (voted) {
+      addVoteData();
+    }
+  }, [likeState]);
+
+  const addVoteData = () => {
+    const data = {
+      voteId: voteId,
+      likeState: likeState,
+    };
+
+    const voteInfoDoc = doc(db, "usersVote/" + voteId);
+    setDoc(voteInfoDoc, data);
+
+    // addDoc(usersMovieLikesCollection, data);
+    // console.log(likeState);
+  };
+
   const handleLike = () => {
+    setVoted(true);
     if (!likeState.alreadyDisliked) {
       if (!likeState.alreadyLiked) {
         setLikeState({
@@ -40,6 +86,7 @@ const Rate = () => {
     }
   };
   const handleDislike = () => {
+    setVoted(true);
     if (!likeState.alreadyLiked) {
       if (!likeState.alreadyDisliked) {
         setLikeState({
@@ -68,6 +115,8 @@ const Rate = () => {
       });
     }
   };
+
+  // addVoteData();
 
   return (
     <div>
