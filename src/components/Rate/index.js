@@ -10,12 +10,14 @@ const Rate = ({ movieId, email }) => {
   const [likeState, setLikeState] = useState({
     alreadyLiked: false,
     alreadyDisliked: false,
+  });
+  const [movieVoteState, setMovieVoteState] = useState({
     likes: 0,
     dislikes: 0,
     total_votes: 0,
   });
 
-  const retrieveData = async () => {
+  const retrieveUserVoteData = async () => {
     const voteInfoDoc = doc(db, "usersVote/" + voteId);
     const prevVoteData = await getDoc(voteInfoDoc);
     if (prevVoteData.exists()) {
@@ -23,36 +25,59 @@ const Rate = ({ movieId, email }) => {
       setLikeState({
         alreadyLiked: voteData.likeState.alreadyLiked,
         alreadyDisliked: voteData.likeState.alreadyDisliked,
-        likes: voteData.likeState.likes,
-        dislikes: voteData.likeState.dislikes,
-        total_votes: voteData.likeState.total_votes,
       });
 
       console.log(voteData);
     }
   };
 
+  const retrieveMovieScoreData = async () => {
+    const movieScoreDoc = doc(db, "moviesScores/" + movieId);
+    const prevScoreData = await getDoc(movieScoreDoc);
+    if (prevScoreData.exists()) {
+      const scoreData = await prevScoreData.data();
+      setMovieVoteState({
+        likes: scoreData.movieScore.likes,
+        dislikes: scoreData.movieScore.dislikes,
+        total_votes: scoreData.movieScore.total_votes,
+      });
+
+      console.log(scoreData);
+    }
+  };
+
   useEffect(async () => {
-    await retrieveData();
+    await retrieveUserVoteData();
+  }, []);
+
+  useEffect(async () => {
+    await retrieveMovieScoreData();
   }, []);
 
   useEffect(() => {
     if (voted) {
-      addVoteData();
+      addUserVoteData();
+      addMovieScore();
     }
   }, [likeState]);
 
-  const addVoteData = () => {
+  const addUserVoteData = () => {
     const data = {
       voteId: voteId,
       likeState: likeState,
     };
-
     const voteInfoDoc = doc(db, "usersVote/" + voteId);
     setDoc(voteInfoDoc, data);
+  };
 
-    // addDoc(usersMovieLikesCollection, data);
-    // console.log(likeState);
+  const addMovieScore = () => {
+    const data = {
+      movieId: movieId,
+      movieScore: movieVoteState,
+    };
+
+    const movieScoreDoc = doc(db, "moviesScores/" + movieId);
+    setDoc(movieScoreDoc, data);
   };
 
   const handleLike = () => {
@@ -62,26 +87,32 @@ const Rate = ({ movieId, email }) => {
         setLikeState({
           alreadyLiked: true,
           alreadyDisliked: likeState.alreadyDisliked,
-          likes: likeState.likes + 1,
-          dislikes: likeState.dislikes,
-          total_votes: likeState.total_votes + 1,
+        });
+        setMovieVoteState({
+          likes: movieVoteState.likes + 1,
+          dislikes: movieVoteState.dislikes,
+          total_votes: movieVoteState.total_votes + 1,
         });
       } else {
         setLikeState({
           alreadyLiked: false,
           alreadyDisliked: likeState.alreadyDisliked,
-          likes: likeState.likes - 1,
-          dislikes: likeState.dislikes,
-          total_votes: likeState.total_votes - 1,
+        });
+        setMovieVoteState({
+          likes: movieVoteState.likes - 1,
+          dislikes: movieVoteState.dislikes,
+          total_votes: movieVoteState.total_votes - 1,
         });
       }
     } else {
       setLikeState({
         alreadyLiked: true,
         alreadyDisliked: false,
-        likes: likeState.likes + 1,
-        dislikes: likeState.dislikes - 1,
-        total_votes: likeState.total_votes,
+      });
+      setMovieVoteState({
+        likes: movieVoteState.likes + 1,
+        dislikes: movieVoteState.dislikes - 1,
+        total_votes: movieVoteState.total_votes,
       });
     }
   };
@@ -92,42 +123,47 @@ const Rate = ({ movieId, email }) => {
         setLikeState({
           alreadyDisliked: true,
           alreadyLiked: likeState.alreadyDisliked,
-          dislikes: likeState.likes + 1,
-          likes: likeState.likes,
-          total_votes: likeState.total_votes + 1,
+        });
+        setMovieVoteState({
+          dislikes: movieVoteState.likes + 1,
+          likes: movieVoteState.likes,
+          total_votes: movieVoteState.total_votes + 1,
         });
       } else {
         setLikeState({
           alreadyDisliked: false,
           alreadyLiked: likeState.alreadyLiked,
-          dislikes: likeState.dislikes - 1,
-          likes: likeState.likes,
-          total_votes: likeState.total_votes - 1,
+        });
+        setMovieVoteState({
+          dislikes: movieVoteState.dislikes - 1,
+          likes: movieVoteState.likes,
+          total_votes: movieVoteState.total_votes - 1,
         });
       }
     } else {
       setLikeState({
         alreadyLiked: false,
         alreadyDisliked: true,
-        likes: likeState.likes - 1,
-        dislikes: likeState.dislikes + 1,
-        total_votes: likeState.total_votes,
+      });
+      setMovieVoteState({
+        likes: movieVoteState.likes - 1,
+        dislikes: movieVoteState.dislikes + 1,
+        total_votes: movieVoteState.total_votes,
       });
     }
   };
-
-  // addVoteData();
 
   return (
     <div>
       <div style={{ marginTop: "50px", flexGrow: "0.5" }}>
         <h3>LIKES</h3>
         <p>
-          {likeState.total_votes > 0 && likeState.dislikes < likeState.likes
-            ? ((likeState.likes - likeState.dislikes) * 100) /
-              likeState.total_votes
+          {movieVoteState.total_votes > 0
+            ? parseFloat(
+                (movieVoteState.likes * 100) / movieVoteState.total_votes
+              ).toPrecision(2)
             : 0}
-          % ({likeState.total_votes} votes){" "}
+          % ({movieVoteState.total_votes} votes){" "}
         </p>
       </div>
       <div
