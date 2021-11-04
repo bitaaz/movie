@@ -4,8 +4,8 @@ import { ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
 import { db } from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
-const Rate = ({ movieId, email }) => {
-  const voteId = email + movieId;
+const Rate = ({ movieId, currentUser }) => {
+  const voteId = currentUser ? currentUser.email + movieId : null;
   const [voted, setVoted] = useState(false);
   const [likeState, setLikeState] = useState({
     alreadyLiked: false,
@@ -166,37 +166,39 @@ const Rate = ({ movieId, email }) => {
           % ({movieVoteState.total_votes} votes){" "}
         </p>
       </div>
-      <div
-        style={{
-          display: "flex",
-          marginTop: "50px",
-          alignItems: "center",
-        }}
-      >
-        <IconButton
+      {currentUser && (
+        <div
           style={{
-            color: likeState.alreadyLiked ? "green" : "black",
-            backgroundColor: "white",
-            width: "35px",
-            height: "35px",
-            marginRight: "20px",
+            display: "flex",
+            marginTop: "50px",
+            alignItems: "center",
           }}
-          onClick={handleLike}
         >
-          <ThumbUpAlt style={{ width: "25px", height: "25px" }} />
-        </IconButton>
-        <IconButton
-          style={{
-            color: likeState.alreadyDisliked ? "red" : "black",
-            backgroundColor: "white",
-            width: "35px",
-            height: "35px",
-          }}
-          onClick={handleDislike}
-        >
-          <ThumbDownAlt style={{ width: "25px", height: "25px" }} />
-        </IconButton>
-      </div>
+          <IconButton
+            style={{
+              color: likeState.alreadyLiked ? "green" : "black",
+              backgroundColor: "white",
+              width: "35px",
+              height: "35px",
+              marginRight: "20px",
+            }}
+            onClick={handleLike}
+          >
+            <ThumbUpAlt style={{ width: "25px", height: "25px" }} />
+          </IconButton>
+          <IconButton
+            style={{
+              color: likeState.alreadyDisliked ? "red" : "black",
+              backgroundColor: "white",
+              width: "35px",
+              height: "35px",
+            }}
+            onClick={handleDislike}
+          >
+            <ThumbDownAlt style={{ width: "25px", height: "25px" }} />
+          </IconButton>
+        </div>
+      )}
     </div>
   );
 };

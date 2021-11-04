@@ -49,11 +49,10 @@ const MovieInfo = ({ movie }) => {
                 ))}
               </div>
             </div>
-            {currentUser && (
-              <div>
-                <Rate movieId={movie.id} email={currentUser.email} />
-              </div>
-            )}
+
+            <div>
+              <Rate movieId={movie.id} currentUser={currentUser} />
+            </div>
           </Text>
         </Content>
       </Wrapper>
