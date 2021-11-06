@@ -13,7 +13,6 @@ const Rate = ({ movieId, currentUser }) => {
   });
   const [movieVoteState, setMovieVoteState] = useState({
     likes: 0,
-    dislikes: 0,
     total_votes: 0,
   });
 
@@ -38,7 +37,6 @@ const Rate = ({ movieId, currentUser }) => {
       const scoreData = await prevScoreData.data();
       setMovieVoteState({
         likes: scoreData.movieScore.likes,
-        dislikes: scoreData.movieScore.dislikes,
         total_votes: scoreData.movieScore.total_votes,
       });
 
@@ -90,7 +88,6 @@ const Rate = ({ movieId, currentUser }) => {
         });
         setMovieVoteState({
           likes: movieVoteState.likes + 1,
-          dislikes: movieVoteState.dislikes,
           total_votes: movieVoteState.total_votes + 1,
         });
       } else {
@@ -100,7 +97,6 @@ const Rate = ({ movieId, currentUser }) => {
         });
         setMovieVoteState({
           likes: movieVoteState.likes - 1,
-          dislikes: movieVoteState.dislikes,
           total_votes: movieVoteState.total_votes - 1,
         });
       }
@@ -111,7 +107,6 @@ const Rate = ({ movieId, currentUser }) => {
       });
       setMovieVoteState({
         likes: movieVoteState.likes + 1,
-        dislikes: movieVoteState.dislikes - 1,
         total_votes: movieVoteState.total_votes,
       });
     }
@@ -125,7 +120,6 @@ const Rate = ({ movieId, currentUser }) => {
           alreadyLiked: likeState.alreadyDisliked,
         });
         setMovieVoteState({
-          dislikes: movieVoteState.likes + 1,
           likes: movieVoteState.likes,
           total_votes: movieVoteState.total_votes + 1,
         });
@@ -135,7 +129,6 @@ const Rate = ({ movieId, currentUser }) => {
           alreadyLiked: likeState.alreadyLiked,
         });
         setMovieVoteState({
-          dislikes: movieVoteState.dislikes - 1,
           likes: movieVoteState.likes,
           total_votes: movieVoteState.total_votes - 1,
         });
@@ -147,7 +140,6 @@ const Rate = ({ movieId, currentUser }) => {
       });
       setMovieVoteState({
         likes: movieVoteState.likes - 1,
-        dislikes: movieVoteState.dislikes + 1,
         total_votes: movieVoteState.total_votes,
       });
     }
@@ -159,9 +151,10 @@ const Rate = ({ movieId, currentUser }) => {
         <h3>LIKES</h3>
         <p>
           {movieVoteState.total_votes > 0
-            ? parseFloat(
-                (movieVoteState.likes * 100) / movieVoteState.total_votes
-              ).toPrecision(2)
+            ? Math.round(
+                ((movieVoteState.likes * 100) / movieVoteState.total_votes) *
+                  100
+              ) / 100
             : 0}
           % ({movieVoteState.total_votes} votes){" "}
         </p>
