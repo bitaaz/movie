@@ -168,9 +168,9 @@ const Navbar = ({ showAllMoviesMode }) => {
                           <FavoriteBorder className={classes.icons} />
                         </IconButton>
                       </div>
-                      <div className={classes.drop_down_fav}>
+                      <Link to="/favorites" className={classes.drop_down_fav}>
                         Favorite Movies
-                      </div>
+                      </Link>
                     </div>
                     <div
                       style={{
@@ -199,19 +199,6 @@ const Navbar = ({ showAllMoviesMode }) => {
                     </div>
                   </div>
                 </Popover>
-
-                {/* <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  keepMounted
-                  transformOrigin={{ vertical: "top", horizontal: "center" }}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <MenuItem>{currentUser.email}</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </Menu> */}
               </div>
             ) : (
               <Grid item className={classes.auth_grid}>

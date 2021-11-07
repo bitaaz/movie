@@ -19,6 +19,7 @@ import UserProvider from "./context";
 import AuthProvider from "./contexts/AuthContext";
 import { AuthPrivateRoute, PrivateRoute } from "./PrivateRoute";
 import { ShowAllMovies } from "./components/ShowAllMovies";
+import { Favorites } from "./components/Favorites/Favorites";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/update-profile" element={<UpdateProfile />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/see_all/:title" element={<ShowAllMovies />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
           ;
           <GlobalStyle />

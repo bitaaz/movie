@@ -129,6 +129,7 @@ export const useStyles = makeStyles({
     color: "#eeeeee",
     fontSize: 19,
     marginRight: theme.spacing(8),
+    textDecoration: "none",
     transition: "all 0.3s",
     "&:hover": {
       color: "#bdbdbd",
