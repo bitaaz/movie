@@ -3,9 +3,12 @@ import { IconButton } from "@material-ui/core";
 import { ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
 import { db } from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
+import NoImage from "../../images/no_image.jpg";
 
-const Rate = ({ movieId, currentUser }) => {
-  const voteId = currentUser ? currentUser.email + movieId : null;
+const Rate = ({ movie, currentUser }) => {
+  const voteId = currentUser ? currentUser.email + movie.id : null;
+  const userId = currentUser ? currentUser.email : null;
   const [voted, setVoted] = useState(false);
   const [likeState, setLikeState] = useState({
     alreadyLiked: false,
@@ -17,7 +20,7 @@ const Rate = ({ movieId, currentUser }) => {
   });
 
   const retrieveUserVoteData = async () => {
-    const voteInfoDoc = doc(db, "usersVote/" + voteId);
+    const voteInfoDoc = doc(db, userId + "/" + movie.id);
     const prevVoteData = await getDoc(voteInfoDoc);
     if (prevVoteData.exists()) {
       const voteData = await prevVoteData.data();
@@ -31,7 +34,7 @@ const Rate = ({ movieId, currentUser }) => {
   };
 
   const retrieveMovieScoreData = async () => {
-    const movieScoreDoc = doc(db, "moviesScores/" + movieId);
+    const movieScoreDoc = doc(db, "moviesScores/" + movie.id);
     const prevScoreData = await getDoc(movieScoreDoc);
     if (prevScoreData.exists()) {
       const scoreData = await prevScoreData.data();
@@ -61,20 +64,23 @@ const Rate = ({ movieId, currentUser }) => {
 
   const addUserVoteData = () => {
     const data = {
-      voteId: voteId,
+      title: movie.title,
+      image: movie.poster_path
+        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+        : NoImage,
       likeState: likeState,
     };
-    const voteInfoDoc = doc(db, "usersVote/" + voteId);
+    const voteInfoDoc = doc(db, userId + "/" + movie.id);
     setDoc(voteInfoDoc, data);
   };
 
   const addMovieScore = () => {
     const data = {
-      movieId: movieId,
+      movieId: movie.id,
       movieScore: movieVoteState,
     };
 
-    const movieScoreDoc = doc(db, "moviesScores/" + movieId);
+    const movieScoreDoc = doc(db, "moviesScores/" + movie.id);
     setDoc(movieScoreDoc, data);
   };
 
