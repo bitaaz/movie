@@ -51,7 +51,7 @@ const MovieInfo = ({ movie }) => {
             </div>
 
             <div>
-              <Rate movieId={movie.id} currentUser={currentUser} />
+              <Rate movie={movie} currentUser={currentUser} />
             </div>
           </Text>
         </Content>
