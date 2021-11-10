@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 //styles
@@ -12,9 +12,6 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 //context
 import { useAuth } from "../../contexts/AuthContext";
-import API from "../../API";
-import { ThumbDown, ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
-import { IconButton } from "@material-ui/core";
 
 const MovieInfo = ({ movie }) => {
   const { currentUser } = useAuth();
