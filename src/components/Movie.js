@@ -26,7 +26,7 @@ const Movie = () => {
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
 
-  console.log(state);
+  // console.log(state);
   return (
     <>
       <Navbar />
@@ -48,7 +48,7 @@ const Movie = () => {
                 : NoImage
             }
             role={actor.character}
-          ></Actor>
+          />
         ))}
       </Grid>
       <Footer />
