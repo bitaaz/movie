@@ -9,7 +9,6 @@ import Thumb from "../Thumb";
 import { Fade, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner";
-import { isPersistedState } from "../../helpers";
 
 export const Favorites = () => {
   const { currentUser } = useAuth();
@@ -21,18 +20,23 @@ export const Favorites = () => {
     isHovered: {},
   });
 
-  const userFavoriteMovies = async () => {
-    const events = await firebase.firestore().collection(currentUser.email);
-    events.get().then((querySnapshot) => {
-      const tempDoc = querySnapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-      });
-      setIsLoading(false);
-      setVotedMovies(tempDoc);
-    });
-  };
+  useEffect(() => {
+    async function fetchData() {
+      const userFavoriteMovies = async () => {
+        const events = await firebase.firestore().collection(currentUser.email);
+        events.get().then((querySnapshot) => {
+          const tempDoc = querySnapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          });
+          setIsLoading(false);
+          setVotedMovies(tempDoc);
+        });
+      };
 
-  userFavoriteMovies();
+      await userFavoriteMovies();
+    }
+    fetchData();
+  }, [currentUser.email, votedMovies]);
 
   for (let i = 0; i < votedMovies.length; i++) {
     if (votedMovies[i].likeState.alreadyLiked) {
