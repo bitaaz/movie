@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IconButton } from "@material-ui/core";
 import { ThumbDownAlt, ThumbUpAlt } from "@material-ui/icons";
 import { db } from "../../firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 
@@ -71,7 +71,11 @@ const Rate = ({ movie, currentUser }) => {
       likeState: likeState,
     };
     const voteInfoDoc = doc(db, userId + "/" + movie.id);
-    setDoc(voteInfoDoc, data);
+    if (!(!data.likeState.alreadyLiked && !data.likeState.alreadyDisliked)) {
+      setDoc(voteInfoDoc, data);
+    } else {
+      deleteDoc(voteInfoDoc);
+    }
   };
 
   const addMovieScore = () => {
