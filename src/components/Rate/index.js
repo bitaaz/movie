@@ -7,7 +7,6 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 
 const Rate = ({ movie, currentUser }) => {
-  const voteId = currentUser ? currentUser.email + movie.id : null;
   const userId = currentUser ? currentUser.email : null;
   const [voted, setVoted] = useState(false);
   const [likeState, setLikeState] = useState({
@@ -19,74 +18,88 @@ const Rate = ({ movie, currentUser }) => {
     total_votes: 0,
   });
 
-  const retrieveUserVoteData = async () => {
-    const voteInfoDoc = doc(db, userId + "/" + movie.id);
-    const prevVoteData = await getDoc(voteInfoDoc);
-    if (prevVoteData.exists()) {
-      const voteData = await prevVoteData.data();
-      setLikeState({
-        alreadyLiked: voteData.likeState.alreadyLiked,
-        alreadyDisliked: voteData.likeState.alreadyDisliked,
-      });
-
-      console.log(voteData);
+  useEffect(() => {
+    async function fetchData() {
+      const retrieveUserVoteData = async () => {
+        const voteInfoDoc = doc(db, userId + "/" + movie.id);
+        const prevVoteData = await getDoc(voteInfoDoc);
+        if (prevVoteData.exists()) {
+          const voteData = await prevVoteData.data();
+          setLikeState({
+            alreadyLiked: voteData.likeState.alreadyLiked,
+            alreadyDisliked: voteData.likeState.alreadyDisliked,
+          });
+          // console.log(voteData);
+        }
+      };
+      await retrieveUserVoteData();
     }
-  };
-
-  const retrieveMovieScoreData = async () => {
-    const movieScoreDoc = doc(db, "moviesScores/" + movie.id);
-    const prevScoreData = await getDoc(movieScoreDoc);
-    if (prevScoreData.exists()) {
-      const scoreData = await prevScoreData.data();
-      setMovieVoteState({
-        likes: scoreData.movieScore.likes,
-        total_votes: scoreData.movieScore.total_votes,
-      });
-
-      console.log(scoreData);
-    }
-  };
-
-  useEffect(async () => {
-    await retrieveUserVoteData();
-  }, []);
-
-  useEffect(async () => {
-    await retrieveMovieScoreData();
-  }, []);
+    fetchData();
+  }, [movie.id, userId]);
 
   useEffect(() => {
+    async function fetchData() {
+      const retrieveMovieScoreData = async () => {
+        const movieScoreDoc = doc(db, "moviesScores/" + movie.id);
+        const prevScoreData = await getDoc(movieScoreDoc);
+        if (prevScoreData.exists()) {
+          const scoreData = await prevScoreData.data();
+          setMovieVoteState({
+            likes: scoreData.movieScore.likes,
+            total_votes: scoreData.movieScore.total_votes,
+          });
+
+          // console.log(scoreData);
+        }
+      };
+      await retrieveMovieScoreData();
+    }
+    fetchData();
+  }, [movie.id]);
+
+  useEffect(() => {
+    const addUserVoteData = () => {
+      const data = {
+        title: movie.title,
+        image: movie.poster_path
+          ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+          : NoImage,
+        likeState: likeState,
+      };
+      const voteInfoDoc = doc(db, userId + "/" + movie.id);
+      if (!(!data.likeState.alreadyLiked && !data.likeState.alreadyDisliked)) {
+        setDoc(voteInfoDoc, data);
+      } else {
+        deleteDoc(voteInfoDoc);
+      }
+    };
+
+    const addMovieScore = () => {
+      const data = {
+        movieId: movie.id,
+        movieScore: movieVoteState,
+      };
+
+      const movieScoreDoc = doc(db, "moviesScores/" + movie.id);
+      if (!(data.movieScore.likes === 0 && data.movieScore.total_votes === 0)) {
+        setDoc(movieScoreDoc, data);
+      } else {
+        deleteDoc(movieScoreDoc);
+      }
+    };
     if (voted) {
       addUserVoteData();
       addMovieScore();
     }
-  }, [likeState]);
-
-  const addUserVoteData = () => {
-    const data = {
-      title: movie.title,
-      image: movie.poster_path
-        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-        : NoImage,
-      likeState: likeState,
-    };
-    const voteInfoDoc = doc(db, userId + "/" + movie.id);
-    if (!(!data.likeState.alreadyLiked && !data.likeState.alreadyDisliked)) {
-      setDoc(voteInfoDoc, data);
-    } else {
-      deleteDoc(voteInfoDoc);
-    }
-  };
-
-  const addMovieScore = () => {
-    const data = {
-      movieId: movie.id,
-      movieScore: movieVoteState,
-    };
-
-    const movieScoreDoc = doc(db, "moviesScores/" + movie.id);
-    setDoc(movieScoreDoc, data);
-  };
+  }, [
+    likeState,
+    movie.id,
+    movie.poster_path,
+    movie.title,
+    movieVoteState,
+    userId,
+    voted,
+  ]);
 
   const handleLike = () => {
     setVoted(true);
