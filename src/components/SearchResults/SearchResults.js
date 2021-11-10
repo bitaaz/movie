@@ -29,9 +29,8 @@ export const SearchResults = ({ searchedData }) => {
   return (
     <Grid header="Search Results ">
       {searchedData.results.map((movie) => (
-        <div style={{ display: "block" }}>
+        <div key={movie.id} style={{ display: "block" }}>
           <div
-            key={movie.id}
             style={{
               position: "relative",
             }}
