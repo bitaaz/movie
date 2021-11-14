@@ -1,6 +1,41 @@
+# Movie Site 
+
+A site for showing information of movies in different categories. This site also has authentication for users. 
+
+
+## Images
+
+### Homepage
+
+![Selection_031](https://user-images.githubusercontent.com/47359251/141676099-a56d314c-8b5b-44dc-bf91-d78308c29633.png)
+
+
+
+
+
+
+
+
+### Movie Categories in Homepage
+
+![Selection_029](https://user-images.githubusercontent.com/47359251/141676159-cf98af9b-ac16-4535-9c5f-108d56ec6804.png)
+
+
+
+
+
+
+### User's Favorite Movies Page
+
+![Selection_030](https://user-images.githubusercontent.com/47359251/141676371-2b770782-a7e5-4800-8716-6f4110b4216c.png)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
