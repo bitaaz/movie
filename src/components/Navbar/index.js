@@ -202,25 +202,33 @@ const Navbar = ({ showAllMoviesMode }) => {
               </div>
             ) : (
               <Grid item className={classes.auth_grid}>
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none" }}
-                  onClick={handleClose}
-                >
-                  <Button variant="contained" className={classes.login_button}>
-                    Log In
-                  </Button>
-                </Link>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Link
+                    to="/login"
+                    style={{ textDecoration: "none" }}
+                    onClick={handleClose}
+                  >
+                    <Button
+                      variant="contained"
+                      className={classes.login_button}
+                    >
+                      Log In
+                    </Button>
+                  </Link>
 
-                <Link
-                  to="/signup"
-                  style={{ textDecoration: "none" }}
-                  onClick={handleClose}
-                >
-                  <Button variant="contained" className={classes.signup_button}>
-                    Sign Up
-                  </Button>
-                </Link>
+                  <Link
+                    to="/signup"
+                    style={{ textDecoration: "none" }}
+                    onClick={handleClose}
+                  >
+                    <Button
+                      variant="contained"
+                      className={classes.signup_button}
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
               </Grid>
             )}
           </Toolbar>
