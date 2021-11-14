@@ -12,7 +12,6 @@ export const useStyles = makeStyles(() => ({
   gridList: {
     flexWrap: "nowrap",
     width: "100%",
-    height: "360px",
     overflowY: "hidden",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
