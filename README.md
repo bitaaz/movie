@@ -8,6 +8,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![Selection_031](https://user-images.githubusercontent.com/47359251/141676099-a56d314c-8b5b-44dc-bf91-d78308c29633.png)
 
+
+
+
+
+
+
+
 ### Movie Categories in Homepage
 
 ![Selection_029](https://user-images.githubusercontent.com/47359251/141676159-cf98af9b-ac16-4535-9c5f-108d56ec6804.png)
