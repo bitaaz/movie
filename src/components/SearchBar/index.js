@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { Grid } from "@material-ui/core";
 import SearchBar from "material-ui-search-bar";
+import { isMobile } from "react-device-detect";
 
 const MovieSearchBar = ({ setSearchedItem }) => {
   const [state, setState] = useState("");
@@ -39,6 +40,7 @@ const MovieSearchBar = ({ setSearchedItem }) => {
             background: "#BDBDBD",
             borderRadius: "20px",
           }}
+          inputProps={{ style: { fontSize: isMobile ? "10px" : "15px" } }}
           placeholder="Search Movies..."
         />
       </Grid>
