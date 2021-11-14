@@ -23,6 +23,15 @@ A site for showing information of movies in different categories. This site also
 
 
 
+
+
+### User's Favorite Movies Page
+
+![Selection_030](https://user-images.githubusercontent.com/47359251/141676371-2b770782-a7e5-4800-8716-6f4110b4216c.png)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
