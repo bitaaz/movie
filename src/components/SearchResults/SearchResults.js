@@ -44,6 +44,7 @@ export const SearchResults = ({ searchedData }) => {
                   : NoImage
               }
               height="350px"
+              width="100%"
             />
             <Link to={`/${movie.id}`}>
               <Fade in={isHovered[movie.id]} timeout={400}>

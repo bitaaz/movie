@@ -76,16 +76,15 @@ export const ShowAllMovies = () => {
       <Navbar showAllMoviesMode="true" />
       <Grid header={data.title}>
         {data.tileData.map((tile) => (
-          <div style={{ display: "block" }}>
+          <div key={tile.id} style={{ display: "block" }}>
             <div
-              key={tile.id}
               style={{
                 position: "relative",
               }}
               onMouseEnter={() => handleMouseEnter(tile.id)}
               onMouseLeave={() => handleMouseLeave(tile.id)}
             >
-              <Thumb image={tile.img} height="350px" />
+              <Thumb image={tile.img} height="350px" width="100%" />
               <Link to={`/${tile.id}`}>
                 <Fade in={isHovered[tile.id]} timeout={400}>
                   <div
