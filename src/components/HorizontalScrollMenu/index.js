@@ -15,7 +15,7 @@ import {
 
 import { useStyles } from "./HorizontalScrollMenu.styles";
 
-import { BrowserView, MobileView } from "react-device-detect";
+import { BrowserView, isMobile, MobileView } from "react-device-detect";
 
 export default function SingleLineGridList({
   gridItemsInfo,
@@ -96,25 +96,34 @@ export default function SingleLineGridList({
           onMouseLeave={() => setHover(false)}
           className={classes.title_see_all_link}
         >
-          <h1 style={{ marginRight: "6px" }}>{title}</h1>
           <BrowserView>
-            <Fade in={hover} timeout={400}>
-              <Typography style={{ fontSize: "13px" }}>
-                See All <span style={{ fontWeight: "bold" }}>></span>
-              </Typography>
-            </Fade>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <h1 style={{ marginRight: "6px" }}>{title}</h1>
+              <Fade in={hover} timeout={400}>
+                <Typography style={{ fontSize: "13px" }}>
+                  See All <span style={{ fontWeight: "bold" }}>></span>
+                </Typography>
+              </Fade>
+            </div>
           </BrowserView>
           <MobileView>
-            <Typography style={{ fontSize: "13px" }}>
-              See All <span style={{ fontWeight: "bold" }}>></span>
-            </Typography>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <h3 style={{ marginRight: "6px" }}>{title}</h3>
+              <Typography style={{ fontSize: "10px" }}>
+                See All <span style={{ fontWeight: "bold" }}>></span>
+              </Typography>
+            </div>
           </MobileView>
         </Link>
       </Grid>
 
       <ImageList
         className={classes.gridList}
-        style={{ scrollBehavior: "smooth" }}
+        style={{
+          scrollBehavior: "smooth",
+          height: isMobile ? "240px" : "360px",
+          marginTop: isMobile ? "-20px" : "0",
+        }}
         ref={scrollRef}
         id={"imageList"}
         onScroll={() => setIsScrolling(true)}
@@ -128,6 +137,7 @@ export default function SingleLineGridList({
               height: "400px",
               width: "200px",
               margin: "5px",
+              marginRight: isMobile ? "-55px" : "5px",
             }}
           >
             <Link to={`/${tile.id}`}>
@@ -138,7 +148,12 @@ export default function SingleLineGridList({
                 onMouseEnter={() => handleMouseEnter(tile.id)}
                 onMouseLeave={() => handleMouseLeave(tile.id)}
               >
-                <Thumb image={tile.img} height="300px" />
+                <BrowserView>
+                  <Thumb image={tile.img} height="300px" width="100%" />
+                </BrowserView>
+                <MobileView>
+                  <Thumb image={tile.img} height="200px" width="70%" />
+                </MobileView>
                 <Fade in={isHovered[tile.id]} timeout={400}>
                   <div
                     style={{
@@ -244,35 +259,19 @@ export default function SingleLineGridList({
               </div>
             </Link>
 
-            <Typography>{tile.title}</Typography>
+            <BrowserView>
+              <Typography>{tile.title}</Typography>
+            </BrowserView>
+            <MobileView>
+              <Typography style={{ fontSize: "10px", maxWidth: "150px" }}>
+                {tile.title}
+              </Typography>
+            </MobileView>
           </ImageListItem>
         ))}
 
         {!isScrolling && currentScrollPosition > 0 && (
-          <Fade in={buttonsVisibleOnHover} timeout={300}>
-            <Grid
-              style={{
-                alignItems: "center",
-                display: "flex",
-                height: "330px",
-              }}
-            >
-              <Fab
-                className={classes.fab}
-                style={{
-                  left: "0",
-                }}
-                onClick={() => scroll("left")}
-              >
-                <ArrowBackIosRounded className={classes.arrow_button} />
-              </Fab>
-            </Grid>
-          </Fade>
-        )}
-        {currentScrollPosition <
-          window.innerWidth *
-            ((210 * gridItemsInfo.length) / window.innerWidth - 1) &&
-          !isScrolling && (
+          <BrowserView>
             <Fade in={buttonsVisibleOnHover} timeout={300}>
               <Grid
                 style={{
@@ -284,15 +283,42 @@ export default function SingleLineGridList({
                 <Fab
                   className={classes.fab}
                   style={{
-                    right: "0",
-                    marginRight: "3px",
+                    left: "0",
                   }}
-                  onClick={() => scroll("right")}
+                  onClick={() => scroll("left")}
                 >
-                  <ArrowForwardIosRounded className={classes.arrow_button} />
+                  <ArrowBackIosRounded className={classes.arrow_button} />
                 </Fab>
               </Grid>
             </Fade>
+          </BrowserView>
+        )}
+        {currentScrollPosition <
+          window.innerWidth *
+            ((210 * gridItemsInfo.length) / window.innerWidth - 1) &&
+          !isScrolling && (
+            <BrowserView>
+              <Fade in={buttonsVisibleOnHover} timeout={300}>
+                <Grid
+                  style={{
+                    alignItems: "center",
+                    display: "flex",
+                    height: "330px",
+                  }}
+                >
+                  <Fab
+                    className={classes.fab}
+                    style={{
+                      right: "0",
+                      marginRight: "3px",
+                    }}
+                    onClick={() => scroll("right")}
+                  >
+                    <ArrowForwardIosRounded className={classes.arrow_button} />
+                  </Fab>
+                </Grid>
+              </Fade>
+            </BrowserView>
           )}
       </ImageList>
     </Grid>
