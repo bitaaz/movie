@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 //style
 import { useStyles, contentStyle } from "./HeroImage.styles";
 import NoImage from "../../images/no_image.jpg";
+import { isMobile } from "react-device-detect";
 
 // import { Wrapper, Content, Text } from "./HeroImage.styles";
 
@@ -47,7 +48,7 @@ function HeroImage(props) {
         }}
         indicatorIconButtonProps={{
           style: {
-            padding: "0 5px",
+            margin: "0 8px",
           },
         }}
         fullHeightHover={false}
@@ -56,6 +57,7 @@ function HeroImage(props) {
             padding: "7px",
             color: "black",
             background: "#BDBDBD",
+            display: isMobile ? "none" : "",
           },
         }}
       >
