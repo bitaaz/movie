@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-  width: 100%;
+  width: ${({ width }) => width};
   height: ${({ height }) => height};
   max-width: 720px;
   transition: all 0.35s;
