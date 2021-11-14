@@ -1,6 +1,6 @@
 # Movie Site 
 
-A site for showing information of movies in different categories. This site also have authentication for users.
+A site for showing information of movies in different categories. This site also has authentication for users. 
 
 
 ## Images
