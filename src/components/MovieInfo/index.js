@@ -28,6 +28,7 @@ const MovieInfo = ({ movie }) => {
             }
             clickable={false}
             alt="movie-thumb"
+            width="100%"
           />
           <Text>
             <h1>{movie.title}</h1>
