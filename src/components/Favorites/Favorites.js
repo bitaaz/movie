@@ -75,7 +75,7 @@ export const Favorites = () => {
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={() => handleMouseLeave(item.id)}
                   >
-                    <Thumb image={item.image} height="350px" />
+                    <Thumb image={item.image} height="350px" width="100%" />
                     <Link to={`/${item.id}`}>
                       <Fade in={isHovered[item.id]} timeout={400}>
                         <div
