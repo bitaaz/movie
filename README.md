@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Movie Site 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A site for showing information of movies in different categories. This site also have authentication for users.
+
 
 ## Images
 
@@ -20,6 +21,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![Selection_029](https://user-images.githubusercontent.com/47359251/141676159-cf98af9b-ac16-4535-9c5f-108d56ec6804.png)
 
 
+
+
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
 ## Available Scripts
