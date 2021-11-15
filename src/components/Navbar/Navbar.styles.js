@@ -18,10 +18,13 @@ export const useStyles = makeStyles({
     marginBottom: "100px",
   },
   toolbar: {
-    padding: theme.spacing(2, 8, 2),
+    padding: theme.spacing(4, 8, 4),
     background: "#1c1c1c",
-    [theme.breakpoints.down(395)]: {
-      padding: theme.spacing(2, 3, 2),
+    [theme.breakpoints.down(420)]: {
+      padding: theme.spacing(4, 3, 4),
+    },
+    [theme.breakpoints.down(330)]: {
+      padding: theme.spacing(4, 1, 4),
     },
   },
   logo_link: {
@@ -31,6 +34,9 @@ export const useStyles = makeStyles({
     maxWidth: 200,
     [theme.breakpoints.down("xs")]: {
       maxWidth: 120,
+    },
+    [theme.breakpoints.down(330)]: {
+      maxWidth: 90,
     },
   },
   profile_logo_person: {
@@ -82,6 +88,9 @@ export const useStyles = makeStyles({
     [theme.breakpoints.down("xs")]: {
       fontSize: "12px",
     },
+    [theme.breakpoints.down(330)]: {
+      fontSize: "8px",
+    },
   },
   signup_button: {
     fontSize: "18px",
@@ -95,6 +104,9 @@ export const useStyles = makeStyles({
     },
     [theme.breakpoints.down("xs")]: {
       fontSize: "12px",
+    },
+    [theme.breakpoints.down(330)]: {
+      fontSize: "8px",
     },
   },
 
