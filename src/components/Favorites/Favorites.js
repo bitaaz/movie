@@ -60,9 +60,13 @@ export const Favorites = () => {
 
   return (
     <>
-      <Navbar />
-      <div style={{ marginTop: "100px" }}>
-        {isLoading && <Spinner />}
+      <Navbar showAllMoviesMode="false" />
+      <div style={{ marginTop: "100px", overflowX: "hidden" }}>
+        {isLoading && (
+          <div style={{ marginTop: "200px" }}>
+            <Spinner />
+          </div>
+        )}
         {!isLoading && (
           <Grid header="Favorites">
             {favoriteMovies.length > 0 ? (
@@ -75,16 +79,16 @@ export const Favorites = () => {
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={() => handleMouseLeave(item.id)}
                   >
-                    <Thumb image={item.image} height="350px" width="100%" />
                     <Link to={`/${item.id}`}>
+                      <Thumb image={item.image} height="350px" width="100%" />
                       <Fade in={isHovered[item.id]} timeout={400}>
                         <div
                           style={{
                             position: "absolute",
                             transform: "translateX(-50%)",
                             top: "0",
-                            left: "120px",
-                            width: "270px",
+                            left: "170px",
+                            width: "400px",
                             cursor: "pointer",
                             height: "100%",
                             backgroundColor: "rgba(255,255,255,0.4)",
