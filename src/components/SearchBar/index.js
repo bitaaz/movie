@@ -36,7 +36,7 @@ const MovieSearchBar = ({ setSearchedItem }) => {
           value={state}
           onChange={(newValue) => setState(newValue)}
           style={{
-            width: "70%",
+            width: isMobile ? "90%" : "70%",
             background: "#BDBDBD",
             borderRadius: "20px",
           }}
