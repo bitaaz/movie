@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <>
-      {!searchedItem && <Navbar />}
+      {!searchedItem && <Navbar showAllMoviesMode="false" />}
       {!searchedItem && state.results[0] ? (
         <HeroImage heros={state.results.slice(0, 6)} />
       ) : null}

@@ -29,7 +29,7 @@ const Movie = () => {
   // console.log(state);
   return (
     <>
-      <Navbar />
+      <Navbar showAllMoviesMode="false" />
       <BreadCrumb title={state.original_title} />
       <MovieInfo movie={state} />
       <MovieInfoBar
