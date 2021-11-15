@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background: var(--medGray);
+  background: rgba(0, 0, 0, 0.9);
   color: var(--white);
   height: 70px;
   width: 100%;
+  padding-top: 15px;
   justify-content: center;
   align-items: center;
   display: flex;
