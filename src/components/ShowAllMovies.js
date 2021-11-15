@@ -84,8 +84,9 @@ export const ShowAllMovies = () => {
               onMouseEnter={() => handleMouseEnter(tile.id)}
               onMouseLeave={() => handleMouseLeave(tile.id)}
             >
-              <Thumb image={tile.img} height="350px" width="100%" />
               <Link to={`/${tile.id}`}>
+                <Thumb image={tile.img} height="350px" width="100%" />
+
                 <Fade in={isHovered[tile.id]} timeout={400}>
                   <div
                     style={{
